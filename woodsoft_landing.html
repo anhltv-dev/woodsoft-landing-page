@@ -198,6 +198,26 @@ body { font-family:'Be Vietnam Pro',sans-serif; background:var(--bg); color:var(
 .features-list li { font-size:13.5px; color:var(--text); display:flex; align-items:flex-start; gap:9px; line-height:1.55; }
 .feat-dot { width:6px; height:6px; border-radius:50%; flex-shrink:0; margin-top:6px; }
 
+/* ─── Catalogue Sections (chi tiết từ Catalogue BAZIS) ─── */
+.panel-cat-section { margin-bottom:18px; padding-bottom:14px; border-bottom:1px dashed #dce6f0; }
+.panel-cat-section:last-of-type { border-bottom:none; }
+.panel-cat-title { font-size:13px; font-weight:900; color:var(--blue-dark); letter-spacing:.3px; margin-bottom:8px; text-transform:uppercase; }
+.panel-cat-body { font-size:13.5px; color:var(--text); line-height:1.65; }
+.panel-cat-body p { margin-bottom:10px; }
+.panel-cat-body p:last-child { margin-bottom:0; }
+.panel-cat-body ul { list-style:none; padding:0; margin:8px 0; }
+.panel-cat-body ul li { padding:4px 0 4px 18px; position:relative; font-size:13px; line-height:1.55; }
+.panel-cat-body ul li::before { content:'▸'; position:absolute; left:4px; top:4px; color:var(--blue-mid); font-weight:900; }
+.panel-cat-body strong { color:var(--blue-dark); font-weight:700; }
+
+/* Bảng tương thích máy */
+.panel-machine-table { width:100%; border-collapse:collapse; margin:8px 0 4px; font-size:12px; border-radius:8px; overflow:hidden; box-shadow:0 1px 4px rgba(10,42,74,.06); }
+.panel-machine-table thead { background:var(--blue-dark); color:white; }
+.panel-machine-table th { padding:7px 9px; text-align:left; font-size:11px; font-weight:700; letter-spacing:.3px; }
+.panel-machine-table td { padding:6px 9px; border-bottom:1px solid #eaf0f7; color:var(--text); }
+.panel-machine-table tbody tr:nth-child(odd) { background:#f4f8fc; }
+.panel-machine-table tbody tr:last-child td { border-bottom:none; }
+
 /* Stats row */
 .stats-row { display:flex; gap:12px; margin-bottom:20px; flex-wrap:wrap; }
 .stat-box { flex:1; min-width:90px; background:#f4f8fc; border:1px solid #daeaf7; border-radius:12px; padding:14px 12px; text-align:center; }
@@ -228,6 +248,9 @@ body { font-family:'Be Vietnam Pro',sans-serif; background:var(--bg); color:var(
 .btn-pdf { background:#c0392b; color:white; }
 .export-btn.loading { opacity:.5; pointer-events:none; }
 
+/* ─── MOBILE FLOW (ẩn trên PC) ─── */
+.mobile-flow { display:none; }
+
 /* ─── PAGE FOOTER ─── */
 .page-footer { background:var(--blue-dark); padding:32px 40px; text-align:center; margin-top:8px; }
 .footer-logo { font-size:24px; font-weight:900; color:white; margin-bottom:8px; }
@@ -238,11 +261,13 @@ body { font-family:'Be Vietnam Pro',sans-serif; background:var(--bg); color:var(
 .fc-val { font-size:14px; font-weight:600; color:var(--accent); }
 .footer-note { font-size:11.5px; color:rgba(255,255,255,.3); margin-top:12px; }
 
-/* ─────────────────────────────────────────────────
+/* ═══════════════════════════════════════════════════
    MOBILE / TABLET OPTIMIZATIONS
-   ───────────────────────────────────────────────── */
+   ═══════════════════════════════════════════════════ */
 
-/* Tablet & narrow desktop */
+html, body { overflow-x:hidden; }
+
+/* ─── Tablet & narrow desktop (≤900px) ─── */
 @media (max-width: 900px) {
   /* NAV: thu gọn, ẩn 2 link phụ, chỉ giữ tel + website */
   .nav { padding:0 14px; height:48px; }
@@ -273,33 +298,6 @@ body { font-family:'Be Vietnam Pro',sans-serif; background:var(--bg); color:var(
   .hint-bar { padding:9px 14px; }
   .hint-bar span { font-size:11px; text-align:center; line-height:1.4; }
 
-  /* DIAGRAM: cho scroll ngang vì layout cố định 1080px */
-  .diagram-wrap {
-    padding:18px 0 24px;
-    overflow-x:auto;
-    -webkit-overflow-scrolling:touch;
-    scroll-snap-type:x mandatory;
-    justify-content:flex-start;
-  }
-  .diagram-wrap::before {
-    content:'👈 Vuốt ngang để xem đầy đủ sơ đồ 👉';
-    position:sticky; left:0;
-    display:block; width:100vw;
-    text-align:center;
-    font-size:11px; font-weight:700; color:var(--blue-mid);
-    background:linear-gradient(90deg,#e8f4fd,#f4f8fc);
-    padding:6px 10px; margin-bottom:10px;
-    border-bottom:1px dashed #c5dff0;
-  }
-  .slide {
-    width:1080px;
-    flex-shrink:0;
-    margin:0 14px;
-    scroll-snap-align:start;
-    border-radius:14px;
-    box-shadow:0 6px 24px rgba(0,0,0,.16);
-  }
-
   /* PANEL: gần full màn hình, slide từ phải */
   .panel { width:92vw; max-width:420px; }
   .panel-head { padding:20px 22px 16px; }
@@ -326,6 +324,221 @@ body { font-family:'Be Vietnam Pro',sans-serif; background:var(--bg); color:var(
   .slide-footer > div:last-child { flex-wrap:wrap; gap:10px 16px; }
 }
 
+/* ─── Mobile (≤768px): kích hoạt mobile-flow, ẩn sơ đồ PC ─── */
+@media (max-width: 768px) {
+  /* Ẩn sơ đồ PC & hint bar cũ */
+  .hint-bar { display:none; }
+  .diagram-wrap { display:none; }
+
+  /* Hiện mobile-flow */
+  .mobile-flow { display:block; padding:0 14px 24px; background:var(--bg); }
+
+  /* Mini-flow banner */
+  .mflow-banner {
+    background:linear-gradient(135deg,#0a2a4a,#0d6eb5);
+    border-radius:14px; padding:14px 14px 12px; margin:14px 0 18px;
+    text-align:center; color:white;
+    box-shadow:0 6px 18px rgba(10,42,74,.18);
+  }
+  .mflow-banner-title {
+    font-size:10.5px; font-weight:800; letter-spacing:2px;
+    color:var(--accent); margin-bottom:8px;
+  }
+  .mflow-banner-chips {
+    display:flex; flex-wrap:wrap; justify-content:center;
+    gap:5px; align-items:center;
+  }
+  .mfchip {
+    font-size:10.5px; font-weight:700;
+    background:rgba(255,255,255,.12); border:1px solid rgba(255,255,255,.22);
+    color:white; border-radius:14px; padding:4px 9px;
+  }
+  .mfchip.accent { background:var(--accent); border-color:var(--accent); color:white; }
+  .mfarr { color:rgba(255,255,255,.4); font-size:11px; }
+  .mflow-hint {
+    margin-top:10px; font-size:11px; color:rgba(255,255,255,.7);
+    border-top:1px dashed rgba(255,255,255,.18); padding-top:8px;
+  }
+
+  /* Section header */
+  .msec { margin-bottom:18px; }
+  .msec-head {
+    font-size:13px; font-weight:900; color:var(--blue-dark);
+    letter-spacing:1.5px; padding:6px 0 10px;
+    border-bottom:2px solid var(--blue-mid); margin-bottom:14px;
+    display:flex; align-items:center; gap:8px;
+  }
+  .msec-num {
+    background:var(--blue-mid); color:white;
+    width:26px; height:26px; border-radius:50%;
+    display:inline-flex; align-items:center; justify-content:center;
+    font-size:14px; font-weight:900;
+  }
+
+  /* Module card */
+  .mcard {
+    background:white; border-radius:14px;
+    padding:14px 14px 12px; cursor:pointer;
+    box-shadow:0 4px 14px rgba(10,42,74,.08);
+    transition:transform .18s, box-shadow .18s;
+    border-left:4px solid #ccc;
+  }
+  .mcard:active { transform:scale(.98); box-shadow:0 2px 8px rgba(10,42,74,.12); }
+  .mc-blue   { border-left-color:var(--blue-mid); }
+  .mc-orange { border-left-color:var(--accent); }
+  .mc-green  { border-left-color:var(--green); background:linear-gradient(135deg,#fafffd,white); }
+
+  .mcard-top {
+    display:flex; align-items:center; justify-content:space-between;
+    margin-bottom:8px; gap:8px;
+  }
+  .mcard-icon { font-size:22px; line-height:1; }
+  .mcard-cat {
+    font-size:9.5px; font-weight:800; letter-spacing:.8px;
+    padding:3px 8px; border-radius:5px;
+  }
+  .mcard-title {
+    font-size:16px; font-weight:900; color:var(--blue-dark);
+    line-height:1.25; margin-bottom:6px;
+  }
+  .mcard-desc {
+    font-size:12.5px; color:var(--muted); line-height:1.5;
+    margin-bottom:10px;
+  }
+  .mcard-cta {
+    display:inline-block; font-size:11.5px; font-weight:700;
+    color:var(--blue-mid);
+    border-top:1px dashed #d8e4ef; padding-top:8px;
+    width:100%;
+  }
+  .mc-green .mcard-cta { color:var(--green); }
+  .mc-orange .mcard-cta { color:var(--accent); }
+
+  /* Connector mũi tên giữa các card */
+  .mconn {
+    text-align:center; font-size:18px; color:#8aaac0;
+    line-height:1; margin:6px 0 8px;
+  }
+  .mconn-fork {
+    font-size:14px; color:var(--blue-mid); font-weight:800;
+    margin:10px 0 6px;
+  }
+  .mconn-sub {
+    display:inline-block; font-size:10px; font-weight:700;
+    letter-spacing:1.5px; color:#8aaac0; margin-top:2px;
+  }
+
+  /* Branch (luồng 1 / 2) */
+  .mbranch {
+    border-radius:14px; padding:12px 12px 14px;
+    margin-bottom:10px; border:2px solid;
+  }
+  .mbranch-label {
+    display:inline-block; font-size:11px; font-weight:900;
+    letter-spacing:1.5px; padding:4px 12px;
+    border-radius:6px; color:white; margin-bottom:10px;
+  }
+  .mbranch-green { background:rgba(0,200,150,.05); border-color:var(--green); border-style:dashed; }
+  .mbranch-green .mbranch-label { background:var(--green); }
+  .mbranch-orange { background:rgba(240,165,0,.05); border-color:var(--accent); }
+  .mbranch-orange .mbranch-label { background:var(--accent); }
+
+  /* DXF bridge */
+  .mdxf-bridge {
+    margin-top:12px; background:linear-gradient(135deg,#fff8e8,#fffdf5);
+    border:2px solid var(--accent); border-radius:12px;
+    padding:12px 14px; display:flex; align-items:center; gap:12px;
+  }
+  .mdxf-icon { font-size:26px; flex-shrink:0; }
+  .mdxf-title {
+    font-size:14px; font-weight:900; color:#b07800; letter-spacing:1px;
+  }
+  .mdxf-sub {
+    font-size:11.5px; color:#8a6000; font-weight:600;
+    line-height:1.4; margin-top:2px;
+  }
+
+  /* Grid 2 cột (cho section 4 & 5) */
+  .mgrid-2 {
+    display:grid; grid-template-columns:1fr 1fr; gap:10px;
+  }
+
+  /* Card compact cho section 4 (Đóng gói) */
+  .mcard-compact { padding:12px 10px 10px; text-align:center; }
+  .mcard-compact .mcard-icon-big { font-size:32px; margin-bottom:6px; }
+  .mcard-compact .mcard-title-sm {
+    font-size:13px; font-weight:900; color:var(--blue-dark);
+    line-height:1.25; margin-bottom:5px;
+  }
+  .mcard-compact .mcard-desc-sm {
+    font-size:11px; color:var(--muted); line-height:1.4;
+    margin-bottom:8px; min-height:30px;
+  }
+  .mcard-compact .mcard-cta-sm {
+    font-size:11px; font-weight:700; color:var(--blue-mid);
+    border-top:1px dashed #d8e4ef; padding-top:6px;
+  }
+  .mcard-compact.mc-green .mcard-cta-sm { color:var(--green); }
+
+  /* Small card (section 5) */
+  .msmall {
+    background:white; border-radius:12px;
+    padding:14px 10px 12px; text-align:center; cursor:pointer;
+    box-shadow:0 3px 10px rgba(10,42,74,.07);
+    border-top:3px solid #ccc;
+    transition:transform .15s;
+  }
+  .msmall:active { transform:scale(.96); }
+  .msmall-icon { font-size:28px; margin-bottom:6px; }
+  .msmall-name {
+    font-size:12.5px; font-weight:900; color:var(--blue-dark);
+    line-height:1.25; margin-bottom:4px;
+  }
+  .msmall-desc {
+    font-size:10.5px; color:var(--muted); line-height:1.4;
+  }
+  .msmall-cloud  { border-top-color:#5aabec; }
+  .msmall-orange { border-top-color:var(--accent); }
+  .msmall-green  { border-top-color:var(--green); background:linear-gradient(180deg,#fafffd,white); }
+
+  /* NEW badge inline */
+  .mnew {
+    display:inline-block; background:var(--green); color:white;
+    font-size:8px; font-weight:800; letter-spacing:.5px;
+    border-radius:3px; padding:1px 5px; vertical-align:middle;
+    margin-left:3px;
+  }
+
+  /* Production banner */
+  .mprod {
+    background:linear-gradient(90deg,#c0392b,#e74c3c);
+    color:white; text-align:center;
+    font-size:18px; font-weight:900; letter-spacing:2px;
+    padding:18px 12px; border-radius:14px; margin-top:8px;
+    box-shadow:0 6px 18px rgba(192,57,43,.3);
+  }
+
+  /* PANEL: full-screen overlay trên mobile */
+  .panel {
+    width:100vw; max-width:none;
+    top:0; right:0; bottom:0; left:0;
+    transform:translateY(100%);
+    box-shadow:none;
+  }
+  .panel.open { transform:translateY(0); }
+  .panel-head { padding:18px 18px 14px; padding-right:50px; }
+  .panel-title { font-size:18px; }
+  .panel-close {
+    top:14px; right:14px;
+    width:36px; height:36px;
+    background:var(--blue-dark); color:white;
+    box-shadow:0 3px 10px rgba(0,0,0,.18);
+  }
+  .panel-close:hover { background:var(--blue-mid); }
+  .panel-body { padding:16px 18px 36px; }
+  .overlay { backdrop-filter:none; background:rgba(10,42,74,.6); }
+}
+
 /* Phone */
 @media (max-width: 480px) {
   .nav { padding:0 10px; height:44px; }
@@ -341,14 +554,19 @@ body { font-family:'Be Vietnam Pro',sans-serif; background:var(--bg); color:var(
   .stat-num { font-size:20px; }
   .flow-chip { font-size:10.5px; padding:4px 9px; }
 
-  .hint-bar span { font-size:10.5px; }
-
-  .diagram-wrap::before { font-size:10.5px; }
-
-  .panel { width:96vw; max-width:none; }
-  .panel-head { padding:18px 18px 14px; }
+  /* Mobile-flow tweaks cho phone */
+  .mobile-flow { padding:0 10px 22px; }
+  .mflow-banner { padding:12px 10px 10px; }
+  .mflow-banner-title { font-size:10px; letter-spacing:1.5px; }
+  .mfchip { font-size:10px; padding:3px 8px; }
+  .msec-head { font-size:12px; }
+  .msec-num { width:24px; height:24px; font-size:13px; }
+  .mcard-title { font-size:15px; }
+  .mcard-desc { font-size:12px; }
+  .msmall-name { font-size:12px; }
+  .msmall-desc { font-size:10px; }
+  .mprod { font-size:16px; letter-spacing:1.5px; padding:16px 10px; }
   .panel-title { font-size:17px; }
-  .panel-body { padding:16px 18px 24px; }
 
   .footer-contacts { flex-direction:column; gap:12px; }
 }
@@ -754,6 +972,185 @@ body { font-family:'Be Vietnam Pro',sans-serif; background:var(--bg); color:var(
 </div><!-- end slide -->
 </div><!-- end diagram-wrap -->
 
+<!-- ═══════════════════════════════════════════════════
+     MOBILE-ONLY LAYOUT (≤768px) · Stack feed theo luồng
+     ═══════════════════════════════════════════════════ -->
+<div class="mobile-flow">
+
+  <!-- Mini-flow banner -->
+  <div class="mflow-banner">
+    <div class="mflow-banner-title">━━ LUỒNG SẢN XUẤT 7 BƯỚC ━━</div>
+    <div class="mflow-banner-chips">
+      <span class="mfchip">🛋️ Showroom</span>
+      <span class="mfarr">→</span>
+      <span class="mfchip">🎨 3D</span>
+      <span class="mfarr">→</span>
+      <span class="mfchip">📐 BOM</span>
+      <span class="mfarr">→</span>
+      <span class="mfchip">✂️ Cắt ván</span>
+      <span class="mfarr">→</span>
+      <span class="mfchip accent">⚙️ CNC</span>
+      <span class="mfarr">→</span>
+      <span class="mfchip">📦 Pack</span>
+      <span class="mfarr">→</span>
+      <span class="mfchip">🏭 Sản xuất</span>
+    </div>
+    <div class="mflow-hint">👆 Bấm vào từng module bên dưới để xem chi tiết</div>
+  </div>
+
+  <!-- ① THIẾT KẾ -->
+  <section class="msec">
+    <div class="msec-head"><span class="msec-num">①</span> THIẾT KẾ</div>
+    <div class="mcard mc-blue" onclick="openPanel('showroom-noi-that')">
+      <div class="mcard-top"><span class="mcard-icon">🛋️</span><span class="mcard-cat" style="background:#e8f4fd;color:#0d6eb5;">BAZIS Core · M9</span></div>
+      <div class="mcard-title">Nội Thất / Showroom</div>
+      <div class="mcard-desc">Thiết kế phòng 3D tại chỗ · Báo giá tự động · Chốt đơn +40%</div>
+      <div class="mcard-cta">Xem chi tiết →</div>
+    </div>
+    <div class="mconn">↓</div>
+    <div class="mcard mc-blue" onclick="openPanel('dunghihn')">
+      <div class="mcard-top"><span class="mcard-icon">🧱</span><span class="mcard-cat" style="background:#e8f4fd;color:#0d6eb5;">BAZIS Core · M1</span></div>
+      <div class="mcard-title">Dựng Hình</div>
+      <div class="mcard-desc">Dựng 3D bất kỳ độ phức tạp · Xuất 2D, BOM, sơ đồ lắp ráp tự động</div>
+      <div class="mcard-cta">Xem chi tiết →</div>
+    </div>
+    <div class="mconn">↓</div>
+    <div class="mcard mc-blue" onclick="openPanel('cabinet')">
+      <div class="mcard-top"><span class="mcard-icon">🗄️</span><span class="mcard-cat" style="background:#e8f4fd;color:#0d6eb5;">BAZIS Core · M2</span></div>
+      <div class="mcard-title">Cabinet</div>
+      <div class="mcard-desc">Dựng nhanh theo thông số lập trình sẵn · Tốc độ nhanh hơn nhiều lần</div>
+      <div class="mcard-cta">Xem chi tiết →</div>
+    </div>
+    <div class="mconn">↓</div>
+    <div class="mcard mc-green" onclick="openPanel('sketchup')">
+      <div class="mcard-top"><span class="mcard-icon">🔌</span><span class="mcard-cat" style="background:#e6f9f3;color:#007a5e;">Plugin · NEW</span></div>
+      <div class="mcard-title">Plugin SketchUp</div>
+      <div class="mcard-desc">Thiết kế trực tiếp SketchUp · Xuất CNC &amp; Nesting 1-click · P2P, 5/6 mặt</div>
+      <div class="mcard-cta">Xem chi tiết →</div>
+    </div>
+  </section>
+
+  <!-- ② CẮT VÁN -->
+  <section class="msec">
+    <div class="msec-head"><span class="msec-num">②</span> CẮT VÁN</div>
+    <div class="mcard mc-orange" onclick="openPanel('catvan')">
+      <div class="mcard-top"><span class="mcard-icon">✂️</span><span class="mcard-cat" style="background:#fff8e8;color:#b07800;">BAZIS · M4·6·7</span></div>
+      <div class="mcard-title">Cắt Ván &amp; CNC Panel Saw</div>
+      <div class="mcard-desc">Sơ đồ cắt tối ưu vật liệu · Điều khiển 15+ hãng máy Panel Saw</div>
+      <div class="mcard-cta">Xem chi tiết →</div>
+    </div>
+    <div class="mconn">↓</div>
+    <div class="mcard mc-blue" onclick="openPanel('cnc')">
+      <div class="mcard-top"><span class="mcard-icon">⚙️</span><span class="mcard-cat" style="background:#e8f4fd;color:#0d6eb5;">BAZIS Core · M7</span></div>
+      <div class="mcard-title">BAZIS CNC</div>
+      <div class="mcard-desc">File chạy 30+ hãng máy CNC · Xuất DXF làm trung gian cho Woodsoft</div>
+      <div class="mcard-cta">Xem chi tiết →</div>
+    </div>
+
+    <div class="mdxf-bridge">
+      <div class="mdxf-icon">📄</div>
+      <div class="mdxf-body">
+        <div class="mdxf-title">DXF</div>
+        <div class="mdxf-sub">Định dạng trung gian · Woodsoft Optimizers kế thừa toàn bộ từ đây</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ③ TỐI ƯU XUẤT FILE -->
+  <section class="msec">
+    <div class="msec-head"><span class="msec-num">③</span> TỐI ƯU XUẤT FILE</div>
+    <div class="mcard mc-green" onclick="openPanel('nestsaw')">
+      <div class="mcard-top"><span class="mcard-icon">🔀</span><span class="mcard-cat" style="background:#e6f9f3;color:#007a5e;">Data Analyzer · NEW</span></div>
+      <div class="mcard-title">Nestsaw Gateway</div>
+      <div class="mcard-desc">Phân tích DXF tự động → chia luồng sản xuất Nesting/Panel Saw</div>
+      <div class="mcard-cta">Xem chi tiết →</div>
+    </div>
+    <div class="mconn mconn-fork">▼<br><span class="mconn-sub">chia 2 luồng</span></div>
+
+    <div class="mbranch mbranch-green">
+      <div class="mbranch-label">① LUỒNG NESTING</div>
+      <div class="mcard mc-green" onclick="openPanel('nesting')">
+        <div class="mcard-top"><span class="mcard-icon">🔮</span><span class="mcard-cat" style="background:#e6f9f3;color:#007a5e;">Optimizer · NEW</span></div>
+        <div class="mcard-title">Woodsoft Nesting</div>
+        <div class="mcard-desc">Tối ưu xếp ván · Chống văng · Xuất G-Code, MPR, DXF</div>
+        <div class="mcard-cta">Xem chi tiết →</div>
+      </div>
+    </div>
+
+    <div class="mbranch mbranch-orange">
+      <div class="mbranch-label">② LUỒNG PANEL SAW</div>
+      <div class="mcard mc-orange" onclick="openPanel('catvan')">
+        <div class="mcard-top"><span class="mcard-icon">✂️</span><span class="mcard-cat" style="background:#fff8e8;color:#b07800;">BAZIS · M4·6·7</span></div>
+        <div class="mcard-title">BAZIS Cắt Ván &amp; Panel Saw</div>
+        <div class="mcard-desc">15+ hãng máy Panel Saw · Xuất file định dạng gốc từng hãng</div>
+        <div class="mcard-cta">Xem chi tiết →</div>
+      </div>
+    </div>
+
+    <div class="mconn">↓</div>
+    <div class="mcard mc-green" onclick="openPanel('gcode')">
+      <div class="mcard-top"><span class="mcard-icon">⚡</span><span class="mcard-cat" style="background:#e6f9f3;color:#007a5e;">SketchUp Only · NEW</span></div>
+      <div class="mcard-title">Ra file G-Code</div>
+      <div class="mcard-desc">Thay thế Aspire · Tự tạo post processor · Tối ưu đường dao</div>
+      <div class="mcard-cta">Xem chi tiết →</div>
+    </div>
+  </section>
+
+  <!-- ④ ĐÓNG GÓI -->
+  <section class="msec">
+    <div class="msec-head"><span class="msec-num">④</span> ĐÓNG GÓI</div>
+    <div class="mgrid-2">
+      <div class="mcard mc-blue mcard-compact" onclick="openPanel('baogoi')">
+        <div class="mcard-icon-big">📦</div>
+        <div class="mcard-title-sm">BAZIS Bao Gói</div>
+        <div class="mcard-desc-sm">Đóng gói tự động · Tem nhãn từng kiện</div>
+        <div class="mcard-cta-sm">Chi tiết →</div>
+      </div>
+      <div class="mcard mc-green mcard-compact" onclick="openPanel('packing')">
+        <div class="mcard-icon-big">📦</div>
+        <div class="mcard-title-sm">Packing Manager <span class="mnew">NEW</span></div>
+        <div class="mcard-desc-sm">Quy trình 5 bước · QR scan · Tem tự động</div>
+        <div class="mcard-cta-sm">Chi tiết →</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ⑤ CÔNG CỤ HỖ TRỢ -->
+  <section class="msec">
+    <div class="msec-head"><span class="msec-num">⑤</span> CÔNG CỤ HỖ TRỢ</div>
+    <div class="mgrid-2">
+      <div class="msmall msmall-cloud" onclick="openPanel('cloud')">
+        <div class="msmall-icon">☁️</div>
+        <div class="msmall-name">Cloud / Webviewer</div>
+        <div class="msmall-desc">Xem bản vẽ online</div>
+      </div>
+      <div class="msmall msmall-orange" onclick="openPanel('duatoan')">
+        <div class="msmall-icon">💰</div>
+        <div class="msmall-name">Dự Toán</div>
+        <div class="msmall-desc">BOM/BOO/ERP tự động</div>
+      </div>
+      <div class="msmall msmall-orange" onclick="openPanel('kho')">
+        <div class="msmall-icon">🏪</div>
+        <div class="msmall-name">Kho</div>
+        <div class="msmall-desc">Xuất · Nhập · Tồn · Mã vạch</div>
+      </div>
+      <div class="msmall msmall-green" onclick="openPanel('dataanalyzer')">
+        <div class="msmall-icon">📊</div>
+        <div class="msmall-name">Data Analyzer <span class="mnew">NEW</span></div>
+        <div class="msmall-desc">Dashboard KPI thời gian thực</div>
+      </div>
+      <div class="msmall msmall-cloud" onclick="openPanel('label')">
+        <div class="msmall-icon">🏷️</div>
+        <div class="msmall-name">Label Editor <span class="mnew">NEW</span></div>
+        <div class="msmall-desc">Thiết kế tem kéo-thả</div>
+      </div>
+    </div>
+  </section>
+
+  <div class="mprod">🏭 &nbsp;S Ả N&nbsp; X U Ấ T&nbsp; 🏭</div>
+
+</div><!-- end mobile-flow -->
+
 <!-- ─── PAGE FOOTER ─── -->
 <footer class="page-footer">
   <div class="footer-logo">wood<span>soft</span>.vn</div>
@@ -816,6 +1213,24 @@ const MODULES = {
       'Quản lý nhiều showroom & báo cáo doanh số từng nhân viên'
     ],
     featColor: '#0d6eb5',
+    sections: [
+      {
+        title: 'BAZIS SHOP – 3 module con tích hợp',
+        body: `<p>BAZIS Shop <strong>thiết kế nhanh không gian nội thất, tạo đơn hàng từ cả sản phẩm chuẩn và phi chuẩn</strong>. Bao gồm 3 module con:</p><ul><li><strong>PRICE LIST MANAGEMENT</strong> – Quản lý bảng giá: tạo bảng giá cho module nội thất và sản phẩm chuẩn</li><li><strong>ORDER MANAGEMENT</strong> – Quản lý đơn hàng: nhập và quản lý đơn</li><li><strong>BAZIS INTERIOR</strong> – Sắp xếp không gian nội thất</li></ul>`
+      },
+      {
+        title: '① Price List Management – Quản lý bảng giá',
+        body: `<p>Module này dùng để <strong>xây dựng catalog sản phẩm nội thất</strong>. Nhóm sản phẩm theo chức năng và quản lý thuộc tính của chúng. Cập nhật giá tự động cho từng nhà cung cấp, từng dòng sản phẩm.</p>`
+      },
+      {
+        title: '② Order Management – Quản lý đơn hàng',
+        body: `<ul><li>Tự động hóa việc tạo đơn hàng, có thể chỉnh sửa thủ công nếu cần</li><li>Quản lý đơn dựa trên cơ sở dữ liệu: <strong>danh sách khách hàng, dịch vụ khách hàng mở rộng, toàn bộ các giai đoạn hỗ trợ khách</strong> (từ ký hợp đồng, đặt đơn, thiết kế, sản xuất đến giao hàng)</li><li>Thêm sản phẩm tạo trên BAZIS Dựng Hình và BAZIS Cabinet vào đơn với khả năng <strong>tự động tính giá thành và điều chỉnh giá</strong></li><li>Tạo bảng dịch vụ phụ trợ và nhân công không trực tiếp tham gia sản xuất tại nhà máy. Tính chi phí các dịch vụ này giống như BAZIS Dự Toán</li><li>Thiết lập template, biểu mẫu (bảng thống kê, hóa đơn...) với hỗ trợ từ phần mềm báo cáo chuyên dụng <strong>FastReport</strong></li><li>Tổ chức và quản lý đơn hàng tạo bởi <strong>các showroom từ xa</strong></li><li>Chỉnh sửa đơn thủ công, dùng sản phẩm từ bảng giá hiện tại</li><li><strong>Báo cáo doanh thu</strong> của từng showroom cũng như từng nhân viên bán hàng</li></ul>`
+      },
+      {
+        title: '③ BAZIS Interior – Sắp xếp không gian',
+        body: `<ul><li>Dùng để <strong>thiết kế không gian nội thất</strong></li><li>Nhanh chóng dựng không gian với bố trí cửa sổ, cửa ra vào, vách ngăn phòng...</li><li>Tự động thay thế model sản phẩm hoặc linh kiện như tay nắm, chân đỡ... bằng phụ kiện tương tự khác từ bảng giá</li><li>Minh họa cơ chế chuyển động của bản lề, cửa trượt, ngăn kéo...</li><li><strong>Chuyển đơn hàng sang sản xuất</strong> – kết nối trực tiếp về xưởng</li></ul>`
+      }
+    ],
     stats: [
       { num: '+40%', label: 'Tỉ lệ chốt đơn' },
       { num: '-60%', label: 'Thời gian tư vấn' },
@@ -840,7 +1255,37 @@ const MODULES = {
       'Lắp đặt phụ kiện liên kết thông minh',
       'Tương thích AutoCAD, 3DS MAX, SketchUp, Excel'
     ],
-    featColor: '#0d6eb5'
+    featColor: '#0d6eb5',
+    sections: [
+      {
+        title: 'Module trái tim của hệ thống BAZIS',
+        body: `<p>Module quan trọng nhất – là <strong>trái tim của hệ thống phần mềm BAZIS</strong>. Là sự kết hợp lý tưởng giữa sự đơn giản trong vận hành với khả năng không giới hạn trong việc dựng hình sản phẩm.</p><p>Với BAZIS Dựng Hình, designer có thể tạo ra sản phẩm gỗ với độ phức tạp bất kỳ. Khả năng tự động tạo ra: bản vẽ 2D chi tiết của từng cấu kiện, bảng thống kê chi tiết ván, bản vẽ chiếu, mặt cắt và phối cảnh sản phẩm. Sơ đồ lắp ráp cũng được tối ưu hóa và sinh ra bởi thuật toán của phần mềm.</p>`
+      },
+      {
+        title: 'Quy trình thiết kế đơn giản',
+        body: `<p>Quy trình thiết kế sản phẩm cực kỳ đơn giản, trực tiếp và trực quan. Designer làm việc trên máy tính như một người thợ mộc thực thụ.</p><p>Quá trình đặt các chi tiết trong bản vẽ được thực hiện theo 1 trong 3 cách: <strong>từ phía trước, từ bên trái, hoặc từ trên xuống</strong>. Phương pháp này rất trực quan và đơn giản – quá trình thiết kế thực chất là việc tạo sơ đồ lắp ráp trong không gian.</p>`
+      },
+      {
+        title: 'Lắp đặt phụ kiện liên kết tiện lợi',
+        body: `<p>Các loại phụ kiện liên kết trong hệ thống BAZIS cực kỳ đa dạng, chia thành các nhóm cụ thể: <strong>bu lông liên kết, chốt gỗ (dowel), vít liên kết, confimat, phụ kiện liên kết góc, vít liên kết có thể tháo lắp...</strong></p><p>Để thêm 1 loại phụ kiện mới chỉ cần nhập tham số vào nhóm phụ kiện tương ứng. Cách dùng đơn giản: chỉ định các chi tiết cần liên kết và vị trí đặt phụ kiện dọc theo chiều dài mối nối. Hoặc đặt khoảng cách cố định – phụ kiện sẽ tự động được phân bố theo chiều dài chi tiết.</p><p>Nếu dùng module BAZIS Cabinet để thiết kế, các phụ kiện liên kết sẽ được tự động sắp xếp vào chi tiết sản phẩm một cách tối ưu.</p>`
+      },
+      {
+        title: 'Chỉnh sửa thuận tiện',
+        body: `<p>Module BAZIS Dựng Hình bao gồm tập hợp lệnh cho phép người dùng <strong>dễ dàng và nhanh chóng có được sản phẩm mới từ mô hình sản phẩm đã thiết kế trước đó</strong>. Điều này giúp tiết kiệm rất nhiều thời gian khi thiết kế nhiều biến thể từ 1 mẫu nội thất.</p><ul><li>Thay đổi kích thước bao gói sản phẩm</li><li>Thay thế vật liệu gốc và linh kiện bằng loại khác</li><li>Cho phép loại bỏ, sửa hoặc thêm bất kỳ chi tiết nào của sản phẩm</li></ul>`
+      },
+      {
+        title: 'Thiết kế và dùng bộ phận điển hình (Fragment)',
+        body: `<p>Khi làm việc trên hệ thống BAZIS, người dùng <strong>không cần phải thiết kế lại</strong> số lượng lớn các chi tiết thường dùng (mẫu sản phẩm chuẩn, phụ kiện…).</p><p>Để không lãng phí thời gian tạo các chi tiết trùng lặp, chỉ cần tạo chi tiết đó 1 lần, lưu trong hệ thống. Khi cần tái sử dụng, chỉ việc đặt thiết kế có sẵn vào bất kỳ vị trí nào trong cấu trúc sản phẩm.</p>`
+      },
+      {
+        title: 'Tự động tạo bản vẽ kỹ thuật',
+        body: `<p>Tính năng này <strong>giải phóng "công việc cổ điển" của designer</strong>, chỉ cần chỉnh sửa bản vẽ theo nhu cầu.</p><p>Hệ thống BAZIS sẽ tự động và đầy đủ tạo ra sơ đồ hướng dẫn lắp ráp theo "Tiêu chuẩn thiết kế", cũng như bản vẽ lắp ráp cho từng chi tiết. Đi kèm các thông số kỹ thuật cần thiết.</p><p>Khi xuất bản vẽ, nhiều cài đặt cho phép người dùng chỉ định đặc điểm kỹ thuật. Tất cả bản vẽ tạo ra tự động đã sẵn sàng cho sử dụng ngay tại sản xuất.</p>`
+      },
+      {
+        title: 'Tương thích với phần mềm khác',
+        body: `<ul><li><strong>Import bản vẽ 2D từ AutoCAD</strong> – kế thừa bản vẽ phác thảo, mặt đứng, mặt bên, mặt bằng từ AutoCAD có sẵn</li><li><strong>Import bản vẽ 3D từ SketchUp</strong> – kế thừa công việc của phòng thiết kế</li><li><strong>Export sang phần mềm 3D khác</strong>: 3D MAX, AutoCAD, SketchUp...</li><li><strong>Export dữ liệu dựng hình</strong> sang định dạng <code>.dbf</code>, <code>.xml</code>, <code>.xls</code>...</li></ul>`
+      }
+    ]
   },
   cabinet: {
     name: 'BAZIS – Cabinet',
@@ -858,7 +1303,21 @@ const MODULES = {
       'Kết hợp & tái sử dụng với BAZIS Dựng Hình',
       'Lưu thông số kỹ thuật & cấu trúc để tái dùng cho các đơn sau'
     ],
-    featColor: '#0d6eb5'
+    featColor: '#0d6eb5',
+    sections: [
+      {
+        title: 'Dựng nhanh sản phẩm dạng tủ/cabinet',
+        body: `<p>BAZIS Cabinet cho phép <strong>dựng hình nhanh và chính xác mọi sản phẩm nội thất dạng tủ</strong>. Cho phép làm việc với các đối tượng 3D theo tham số (parametric 3D objects), giảm đáng kể thời gian tạo sản phẩm mới.</p><p>Người dùng có thể chỉnh sửa các thông số kỹ thuật và lưu tham số sản phẩm cũng như cấu trúc bên trong sản phẩm để tái sử dụng cho các lần dựng hình sau.</p><p>Khác với module nền BAZIS Dựng Hình, BAZIS Cabinet <strong>không yêu cầu designer phải có nhiều kiến thức kỹ thuật</strong>.</p>`
+      },
+      {
+        title: 'Khả năng của BAZIS Cabinet',
+        body: `<ul><li>Kết hợp với module <strong>BAZIS Dựng Hình</strong> để chỉnh sửa các sản phẩm tạo ra từ BAZIS Cabinet</li><li>Kiểm tra lỗi tự động khi dựng hình: chi tiết quá khổ ván, ngăn kéo không thể mở do vướng cửa tủ...</li><li>Tạo cùng bộ tài liệu kỹ thuật như BAZIS Dựng Hình: bản vẽ 2D, sơ đồ lắp ráp, hồ sơ sản xuất, file CNC, sơ đồ cắt ván, dự toán</li><li>Dùng để dựng các sản phẩm đơn giản, lặp lại có cấu trúc rõ ràng</li></ul>`
+      },
+      {
+        title: 'Dữ liệu đầu vào & đầu ra',
+        body: `<p><strong>Đầu vào:</strong></p><ul><li>BAZIS Dựng Hình: nhận hình khối cơ bản</li><li>BAZIS Cabinet: thay đổi, chọn các tham số đã lập trình sẵn</li></ul><p><strong>Đầu ra (cùng dạng cho cả 2):</strong> bản vẽ 2D, sơ đồ lắp ráp, hồ sơ sản xuất, file CNC, sơ đồ cắt ván, dự toán giá thành.</p>`
+      }
+    ]
   },
   sketchup: {
     name: 'Plugin Woodsoft cho SketchUp',
@@ -877,7 +1336,17 @@ const MODULES = {
       'Cấu hình post processor đơn giản, trực quan',
       'Kết nối trực tiếp với Woodsoft Nesting & Ra file G-Code'
     ],
-    featColor: '#00c896'
+    featColor: '#00c896',
+    sections: [
+      {
+        title: 'Triết lý Woodsoft Optimizers',
+        body: `<p>Với mong muốn <strong>bổ sung kinh nghiệm của thợ mộc Việt Nam vào phần mềm nước ngoài</strong> – hội tụ và hiện thực hóa các bí quyết, mẹo và ý tưởng của người Việt trong quá trình sản xuất nội thất – Woodsoft đã phát triển bộ phần mềm Woodsoft Optimizers, trong đó Plugin SketchUp là một thành phần quan trọng.</p>`
+      },
+      {
+        title: 'Các tính năng cốt lõi (theo Catalogue BAZIS chương 12)',
+        body: `<ul><li><strong>Tối ưu quy trình cắt</strong>: chống văng chi tiết nhỏ khi Nesting, chạy 2 lỗ cùng lúc, cắt cạnh ván, xoi cho minifix chữ U, vít liên kết, xoi cửa tủ, khoan lỗ bản lề tối ưu...</li><li><strong>Tối ưu gia công chi tiết trên máy gia công trung tâm</strong>: tối ưu xoi chi tiết, khoan ngang, khoan lỗ...</li><li><strong>Sinh code gia công cho nhiều dòng máy</strong>: Nanxing, Huahua, KDT, SCM...</li><li><strong>Import file SketchUp vào BAZIS</strong></li><li><strong>Import tham số từ file Excel (.csv)</strong> để tự động tạo model trong BAZIS</li></ul>`
+      }
+    ]
   },
   duatoan: {
     name: 'BAZIS – Dự Toán',
@@ -895,7 +1364,21 @@ const MODULES = {
       'Hỗ trợ tính số giờ công tối thiểu thực hiện đơn hàng',
       'Tích hợp với hệ thống ERP của doanh nghiệp'
     ],
-    featColor: '#f0a500'
+    featColor: '#f0a500',
+    sections: [
+      {
+        title: 'Tự động tính giá thành sản phẩm',
+        body: `<p>BAZIS Dự Toán cho phép <strong>tự động tính giá thành sản xuất sản phẩm nội thất</strong> (bao gồm chi phí vật tư và chi phí nhân công). Đồng thời cho phép thiết lập công thức tính giá thành sản phẩm và công trình một cách linh hoạt, sát với thực tế.</p><p>Từ BAZIS Dự Toán, người dùng có thể xuất dữ liệu BOM (Bill of Materials) và BOO (Bill of Operation) để đồng bộ hóa với hệ thống ERP của doanh nghiệp.</p>`
+      },
+      {
+        title: 'Quản lý cơ sở dữ liệu vật tư & nhân công',
+        body: `<p>BAZIS Dự Toán quản lý cơ sở dữ liệu vật tư và nhân công của doanh nghiệp.</p><ul><li><strong>Dữ liệu vật tư</strong> có thể import trực tiếp vào phần mềm qua định dạng <code>.dbf</code> hoặc <code>.xml</code></li><li><strong>Định mức vật tư và nhân công</strong> được nhập trực tiếp vào phần mềm để theo dõi và tối ưu hóa việc sử dụng vật liệu và năng suất lao động</li></ul>`
+      },
+      {
+        title: 'Công thức tính giá – linh hoạt theo lịch sử thực tế',
+        body: `<p>Công thức tính giá được thiết lập dựa trên <strong>dữ liệu thống kê lịch sử về vật tư và chi phí lao động</strong> cho từng loại sản phẩm. Doanh nghiệp tự thiết lập công thức theo đặc thù của mình – không bị bó buộc theo cách tính cứng nhắc.</p>`
+      }
+    ]
   },
   catvan: {
     name: 'BAZIS – Cắt Ván & CNC Panel Saw',
@@ -910,13 +1393,61 @@ const MODULES = {
       'Tối ưu sơ đồ cắt cho cưa bàn trượt, Panel Saw, CNC Nesting',
       'Lọc tấm panel theo biến dạng, kích thước, chiều vân',
       'Quản lý ván DC, phôi thành phẩm',
-      'Simulator: Mô phỏng toàn bộ chu trình cắt ván trực quan',
-      'Kiểm tra trước khi chạy máy thật – giảm lỗi sản xuất',
+      'Simulator: Mô phỏng toàn bộ chu trình cắt ván trực quan · Kiểm tra trước khi chạy máy thật, giảm lỗi sản xuất',
       'Hỗ trợ: Altendorf, Felder, Selco, Holzma, SCM, KDT, Nanxing...',
       'Xuất file theo định dạng gốc của từng hãng máy',
       'In & thiết kế tem đi kèm linh hoạt theo yêu cầu'
     ],
-    featColor: '#0d6eb5'
+    featColor: '#0d6eb5',
+    sections: [
+      {
+        title: 'BAZIS Cắt Ván – tối ưu sơ đồ cắt thông minh',
+        body: `<p>BAZIS Cắt Ván <strong>tiết kiệm đáng kể vật liệu và thời gian sản xuất</strong> vì kế hoạch cắt được tính toán tối ưu và hiển thị dưới dạng sơ đồ trực quan, dễ hiểu.</p><p>Tối ưu hóa sơ đồ cắt ván bằng nhiều thuật toán thông minh. Tiêu chí ưu tiên và thứ tự cắt được thay đổi đặc biệt cho từng loại máy: <strong>Cưa bàn trượt (Sliding Panel Saw), CNC Panel Saw, CNC Nesting</strong>.</p><ul><li>Khả năng lọc tấm panel theo biên dạng, kích thước, hướng vân (xác định hay không xác định)</li><li>Có thể tạo kế hoạch cắt cho 1 sản phẩm và cả dự án nhiều sản phẩm – mỗi sản phẩm có số lượng khác nhau</li></ul>`
+      },
+      {
+        title: 'Module thiết kế & in tem đi kèm',
+        body: `<p>Module thiết kế và in tem được tích hợp sẵn cho phép <strong>thiết kế tem theo nhu cầu của bất kỳ doanh nghiệp nào</strong>. Mẫu tem có thể tùy biến linh hoạt cho từng doanh nghiệp.</p><p>Các trường thông tin trong module in tem có thể được thêm và thiết lập dựa trên: <strong>tham số cơ bản, tham số phức hợp và tham số cố định</strong>. Mẫu tem có thể thiết kế linh hoạt theo nhu cầu mỗi công ty và in được trên nhiều khổ giấy khác nhau.</p>`
+      },
+      {
+        title: 'BAZIS Simulator – mô phỏng panel saw',
+        body: `<p>BAZIS Simulator là loại mô phỏng CNC cho cưa bàn trượt (sliding panel saw), trong đó <strong>tất cả các thao tác thực hiện trên cưa bàn trượt được mô tả chi tiết tương tự như trên cưa panel tự động</strong>.</p><p>Simulator cũng là 1 trong nhiều post processor của BAZIS Cắt Ván.</p>`
+      },
+      {
+        title: 'BAZIS CNC Panel Saw – điều khiển máy tự động',
+        body: `<p>BAZIS CNC Panel Saw là 1 trong các post processor của module BAZIS Cắt Ván đặc biệt dành cho <strong>cưa panel tự động</strong>.</p><p>Post processor của BAZIS Cắt Ván sinh ra sơ đồ cắt và chương trình điều khiển cho các máy được liệt kê trong bảng dưới đây.</p>`
+      },
+      {
+        title: 'Bảng tương thích các hãng Panel Saw (15+ hãng)',
+        body: ``,
+        table: {
+          head: ['Hãng máy', 'Hệ điều khiển', 'Định dạng file'],
+          rows: [
+            ['Altendorf', 'Wincut', '*.saw'],
+            ['Casadei (SCM Group)', 'for saw machines', '*.scm'],
+            ['Felder', 'for panel sizing saws', '*.may'],
+            ['Filato', 'Filato', '*'],
+            ['Gabbiani (SCM Group)', 'Wincut', '*.csv'],
+            ['Griggio', 'iLENIA', '*.scm'],
+            ['HOLZ-HER', 'HOLZ-HER', '*.nps'],
+            ['Holzma (HOMAG Group)', 'Postprocessor', '*.ncr'],
+            ['KDT', 'HolzLink (HOMAG Group)', '*.ptx'],
+            ['MacMazza', 'KDT', '*.txt'],
+            ['Martin', '—', '*.pro'],
+            ['Paoloni', 'Martin', '*.mrt'],
+            ['Schelling', '—', '*.txt'],
+            ['SCM (SCM Group)', '—', '*.ncl, *.ncp'],
+            ['Selco (BIESSE Group)', 'Wincut / NC', '*.scm'],
+            ['ZaiTec', 'XML-Link (Biesse) / ZaiTec', '*.xml, *.txt'],
+            ['Simulator', '—', '*.sim'],
+            ['Nesting technology', '—', '*.b3d']
+          ]
+        }
+      },
+      {
+        title: 'Lưu ý về tương thích máy',
+        body: `<p>Danh sách máy tương thích với BAZIS <strong>được cập nhật thường xuyên</strong>. Nếu doanh nghiệp cần kiểm tra khả năng tương thích với máy cụ thể, vui lòng liên hệ Woodsoft để được hỗ trợ.</p>`
+      }
+    ]
   },
   cnc: {
     name: 'BAZIS – CNC',
@@ -936,7 +1467,52 @@ const MODULES = {
       'Xuất DXF làm định dạng trung gian cho Woodsoft Optimizers'
     ],
     featColor: '#0d6eb5',
-    note: '📄 File DXF xuất từ BAZIS CNC là đầu vào chuẩn cho toàn bộ hệ thống Woodsoft Optimizers.'
+    note: '📄 File DXF xuất từ BAZIS CNC là đầu vào chuẩn cho toàn bộ hệ thống Woodsoft Optimizers.',
+    sections: [
+      {
+        title: 'Middleware giữa thiết kế 3D & máy CNC',
+        body: `<p>BAZIS CNC là <strong>middleware (phần mềm trung gian)</strong> chuyển đổi từ bản vẽ 3D trên module BAZIS Dựng Hình hoặc BAZIS Cabinet, cũng như sơ đồ nesting sang định dạng phù hợp của máy CNC.</p><p>Tự động nhận thông tin chi tiết từ đối tượng 3D cũng như bản vẽ 2D (CAD) để xuất sang định dạng yêu cầu của máy CNC. Tự động sinh 2 bản vẽ từ mặt chính và mặt còn lại, cho phép người dùng chỉ định thao tác gia công thuận tiện trong quy trình sản xuất.</p>`
+      },
+      {
+        title: 'Tổ hợp lệnh gia công đa dạng',
+        body: `<ul><li>Tự động tạo tổ hợp lệnh xử lý: <strong>khoan mặt ván, xoi mặt (surface milling), xoi cạnh (edge milling), khoan cạnh (edge drilling)...</strong></li><li>Xuất sang định dạng file phù hợp với chi tiết có dán cạnh hoặc không dán cạnh</li><li>Người dùng có thể đặt file chạy cho nhiều định dạng cùng lúc</li><li>Thiết lập máy để xoi rãnh bằng nhiều dao</li><li>Kiểm tra tính khả thi của các bước trên máy</li><li>Tối ưu hóa quá trình khoan</li></ul>`
+      },
+      {
+        title: 'Bảng tương thích các hãng CNC (30+ hãng)',
+        body: `<p>BAZIS CNC kết nối trực tiếp với các máy CNC dưới đây. Ký hiệu: <strong>KP</strong> – máy xoi & khoan; <strong>K</strong> – chỉ khoan; <strong>B</strong> – cưa.</p>`,
+        table: {
+          head: ['Hãng', 'Loại', 'Hệ điều khiển', 'Format'],
+          rows: [
+            ['Artisman', 'KP', 'Artisman', 'NC'],
+            ['Beaver', 'KP', 'VIC Engraver Control System', 'NC / CNC'],
+            ['Biesse Group', 'KP', 'OSAI Control / BiesseWorks', 'DXF, PAN, BPP'],
+            ['Busellato', 'KP', 'Syntec', 'CNC, XXL, PGM'],
+            ['FELDER (Format4)', 'KP', 'NC500 / NC1000 / XNC', 'CNC, TCN, TNC, AUT'],
+            ['Filato', 'KP', 'Genesis Evolution 6.5-8.8', 'ASCII, DXF'],
+            ['GANNOMAT', 'KP', 'Wave (Xilog Maestro)', 'PZA'],
+            ['GIBEN', '—', '—', 'TCN'],
+            ['Griggio', 'KP', 'Genesis Evolution', 'PD4, HOP'],
+            ['Hirzt', 'KP', 'Wood Flash', 'DXF'],
+            ['HOLZ-HER', 'K', 'ARIX-OpenCNC', 'MPR, FMC'],
+            ['Homag Group', '—', 'WoodWop 4.5-6.1', 'NCP'],
+            ['IMA (BIMA)', 'K', 'Filato Next (NC Boring)', '*'],
+            ['Koch', '—', '—', 'PD4'],
+            ['Maggi', 'K', 'GannoMat Editor', 'LBR, UTE, DXF, TLF'],
+            ['MasterWood', 'KP', 'WoodCam / ImaWop 4.0-8.0', 'NC, XXL, PGM'],
+            ['MultiCam', 'K', 'GCad Lepton / MultiCam PSS', 'CNC'],
+            ['SCM', 'KP', 'TpaCAD Albatros / Xilog Plus/Maestro', '*, PD4'],
+            ['Uniteam', '—', 'Albatros EdiCAD', 'PD4'],
+            ['VITAP', 'K', 'iLENIA CAD/4 / VitapPoint', 'CNC, DNC'],
+            ['Zelder', 'KP', 'Campus Hops / TwinCam', '—'],
+            ['Khác', 'K/KP/B', 'NC-Studio, ICE101, MW208/310, Cyflex H800, Albatros (Wood Flash)', '—']
+          ]
+        }
+      },
+      {
+        title: 'Lưu ý',
+        body: `<p>Danh sách máy tương thích với BAZIS được <strong>cập nhật thường xuyên</strong>. Nếu doanh nghiệp cần kiểm tra tương thích với máy cụ thể, vui lòng liên hệ Woodsoft.</p>`
+      }
+    ]
   },
   nestsaw: {
     name: 'Nestsaw Gateway',
@@ -986,6 +1562,20 @@ const MODULES = {
       'Xuất G-Code cho mọi hệ tọa độ máy CNC – không cần Aspire'
     ],
     featColor: '#00c896',
+    sections: [
+      {
+        title: 'Triết lý "ALL IN ONE CLICK"',
+        body: `<p>Woodsoft Nesting là phần mềm <strong>do Woodsoft phát triển hoàn toàn</strong> với mục tiêu giảm chi phí phần mềm cho khách hàng và đơn giản hóa quy trình sinh file chạy cho máy CNC.</p><p>Triết lý của Woodsoft Nesting là <strong>"ALL IN ONE CLICK"</strong> – chỉ với 1 cú click, người dùng nhận được tất cả kết quả nesting bao gồm: file CNC, tem nhãn, báo cáo vật tư tiêu hao...</p>`
+      },
+      {
+        title: 'Tính năng nổi bật',
+        body: `<ul><li><strong>Chỉ 1 click</strong>: nhận về toàn bộ kết quả nesting – file CNC, tem nhãn, báo cáo vật tư tiêu hao</li><li><strong>Sơ đồ cắt tối ưu</strong> – tiết kiệm tối đa ván gỗ, xếp lồng chi tiết vào vùng rỗng giữa các chi tiết khác</li><li>File CNC <strong>đã bao gồm các tips/secrets</strong> để: chống văng chi tiết nhỏ, khoan lỗ bản lề tối ưu, cắt cạnh ván, xoi cho minifix chữ U, vít liên kết, xoi cửa tủ...</li><li><strong>Tem nhãn đầy đủ thông tin</strong>: tên đơn, tên sản phẩm, tên chi tiết, vật liệu, kích thước, ký hiệu dán cạnh – đánh dấu cả cạnh cong</li><li>Cho phép <strong>tận dụng lại ván DC</strong>, sinh file CNC theo đúng kích thước và số lượng ván DC</li></ul>`
+      },
+      {
+        title: 'Báo cáo vật tư tiêu hao chi tiết',
+        body: `<p>Báo cáo thống kê chi tiết giúp <strong>tối ưu mức tiêu thụ vật liệu</strong>, thuận tiện và dễ dàng tính giá thành:</p><ul><li>Từng loại ván</li><li>Từng loại nẹp dán cạnh (edge banding)</li><li>Số lượng từng loại phụ kiện chính: bản lề, vít cam...</li><li>Thống kê các loại xoi rãnh</li></ul>`
+      }
+    ],
     images: [
       { src: 'nesting_1.png', caption: 'Thuật toán xếp ván độc quyền – tối ưu tỷ lệ sử dụng ván' },
       { src: 'nesting_2.png', caption: 'Woodsoft Nesting – Tính năng toàn diện: xếp ván, chống văng, kết nối đa nguồn' }
@@ -1047,7 +1637,17 @@ const MODULES = {
       'In tem, nhãn tự động cho từng kiện hàng',
       'Nhận dữ liệu từ BAZIS Dựng Hình, Cabinet, CNC'
     ],
-    featColor: '#0d6eb5'
+    featColor: '#0d6eb5',
+    sections: [
+      {
+        title: 'Đóng gói tự động – nhanh, gọn, vừa khít',
+        body: `<ul><li><strong>Đóng gói tự động, dễ dàng</strong> các tấm panel có kích thước khác nhau</li><li>BAZIS Bao Gói giúp <strong>đặt panel vào hộp một cách nhanh chóng, chính xác và vừa vặn với kiện</strong></li><li>Có thể đặt các <strong>gói/hộp ốc vít trong kiện hàng kèm theo</strong> – sẵn sàng cho lắp đặt tại công trình</li><li><strong>Thiết kế bao bì tự động</strong> với nhiều loại bao bì khác nhau cho mỗi kiện – tùy theo trọng lượng cho phép</li><li>Tự động sinh ra sơ đồ sắp xếp chi tiết trong từng kiện</li><li>Tự động sinh <strong>tem nhãn cho từng kiện</strong> – chứa đầy đủ thông tin kiện hàng</li></ul>`
+      },
+      {
+        title: 'Tích hợp toàn diện',
+        body: `<p>BAZIS Bao Gói <strong>nhận dữ liệu trực tiếp</strong> từ BAZIS Dựng Hình, BAZIS Cabinet, BAZIS CNC – không cần nhập tay, đảm bảo dữ liệu chính xác và đồng bộ với thiết kế gốc.</p>`
+      }
+    ]
   },
   packing: {
     name: 'Woodsoft Packing Manager',
@@ -1111,7 +1711,21 @@ const MODULES = {
       'Quét mã vạch, quản lý nhà cung cấp, kho thành phẩm',
       'Nhiều người dùng làm việc đồng thời trên cùng 1 CSDL'
     ],
-    featColor: '#f0a500'
+    featColor: '#f0a500',
+    sections: [
+      {
+        title: 'Giải pháp tinh gọn cho kho vật tư',
+        body: `<p>BAZIS Kho giúp việc <strong>lưu trữ và kiểm soát vật tư trở nên dễ dàng hơn</strong>. Nó cũng làm cho quy trình cung ứng trở nên trơn tru và tiện lợi.</p><p>Việc sử dụng BAZIS Kho giúp tối ưu hóa công việc của bộ phận thiết kế, bộ phận cung ứng. Hỗ trợ sản xuất liên tục với đầy đủ vật tư và công cụ cần thiết.</p>`
+      },
+      {
+        title: 'Tính năng BAZIS Kho',
+        body: `<ul><li><strong>Cấu trúc kho phân cấp</strong> với luồng sản phẩm nội bộ</li><li><strong>Chứng từ được sinh tự động</strong></li><li>Có thể trao đổi và truyền thông tin với các hệ thống khác</li><li>Thiết lập tem sản phẩm với sự hỗ trợ của <strong>module BAZIS TEM</strong></li><li>Tạo chứng từ qua quét mã vạch (barcode scanning)</li><li>Dễ dàng làm việc với nhà cung cấp</li><li>Giao diện dễ dùng, giúp lưu cài đặt người dùng</li><li>Khả năng quản lý kho thành phẩm</li><li>Nhiều người dùng có thể làm việc trên sản phẩm và đơn hàng trong cùng <strong>1 CSDL hợp nhất</strong></li><li>Tích hợp hiệu quả với <strong>Phiếu yêu cầu xuất từ BAZIS Dự Toán</strong></li></ul>`
+      },
+      {
+        title: 'Phạm vi và kết hợp',
+        body: `<p>BAZIS Kho <strong>không thể thay thế phần mềm kế toán</strong>, nhưng chúng bổ sung cho nhau – giải quyết những vấn đề nhỏ nhưng cực kỳ quan trọng cho doanh nghiệp.</p><p>Hiệu quả tối đa của BAZIS Kho đạt được khi <strong>kết hợp với module BAZIS Dựng Hình và BAZIS Cabinet</strong>. BAZIS Kho cũng có thể hoạt động độc lập như một phần mềm quản lý kho thông thường.</p>`
+      }
+    ]
   },
   label: {
     name: 'Woodsoft Label Editor',
@@ -1184,6 +1798,32 @@ function openPanel(id) {
     html += `<li><div class="feat-dot" style="background:${m.featColor};"></div><span>${f}</span></li>`;
   });
   html += `</ul>`;
+
+  // Catalogue Sections (nội dung chi tiết từ Catalogue BAZIS)
+  if (m.sections && m.sections.length) {
+    html += `<div class="panel-section-title" style="margin-top:14px;">Nội dung chi tiết từ Catalogue BAZIS</div>`;
+    m.sections.forEach(s => {
+      html += `<div class="panel-cat-section">
+        <div class="panel-cat-title">${s.title}</div>
+        <div class="panel-cat-body">${s.body || ''}`;
+      if (s.table) {
+        html += `<table class="panel-machine-table">`;
+        if (s.table.head) {
+          html += `<thead><tr>`;
+          s.table.head.forEach(h => html += `<th>${h}</th>`);
+          html += `</tr></thead>`;
+        }
+        html += `<tbody>`;
+        s.table.rows.forEach(r => {
+          html += `<tr>`;
+          r.forEach(c => html += `<td>${c}</td>`);
+          html += `</tr>`;
+        });
+        html += `</tbody></table>`;
+      }
+      html += `</div></div>`;
+    });
+  }
 
   // Workflow
   if (m.workflow) {
