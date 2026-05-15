@@ -1,0 +1,1165 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>BAZIS – Woodsoft Optimizers: Giải Pháp Toàn Diện</title>
+<link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+/* ─── RESET ─── */
+* { margin:0; padding:0; box-sizing:border-box; }
+:root {
+  --blue-dark:#0a2a4a; --blue-mid:#0d6eb5; --blue-bright:#1a9de8;
+  --accent:#f0a500; --green:#00c896; --green-dark:#004d38;
+  --bg:#dde8f4; --white:#fff; --text:#1a2a3a; --muted:#5a7490;
+}
+
+/* ─── PAGE ─── */
+body { font-family:'Be Vietnam Pro',sans-serif; background:var(--bg); color:var(--text); }
+
+/* ─── NAV ─── */
+.nav {
+  background:var(--blue-dark);
+  padding:0 40px;
+  display:flex; align-items:center; justify-content:space-between;
+  height:52px; position:sticky; top:0; z-index:100;
+  box-shadow:0 2px 16px rgba(0,0,0,0.3);
+}
+.nav-logo { font-size:18px; font-weight:900; color:white; }
+.nav-logo span { color:var(--accent); }
+.nav-contacts { display:flex; gap:24px; }
+.nav-contacts a { font-size:12px; font-weight:600; color:rgba(255,255,255,0.65); text-decoration:none; transition:color .2s; }
+.nav-contacts a:hover { color:var(--accent); }
+
+/* ─── HERO ─── */
+.hero {
+  background:linear-gradient(135deg,var(--blue-dark) 0%,#0b3d6b 55%,var(--blue-mid) 100%);
+  padding:52px 40px 44px; position:relative; overflow:hidden;
+}
+.hero::before { content:''; position:absolute; top:-100px; right:-60px; width:500px; height:500px; border-radius:50%; background:radial-gradient(circle,rgba(26,157,232,.15) 0%,transparent 70%); }
+.hero::after  { content:''; position:absolute; bottom:-80px; left:35%; width:380px; height:380px; border-radius:50%; background:radial-gradient(circle,rgba(240,165,0,.1) 0%,transparent 70%); }
+.hero-inner { max-width:1160px; margin:0 auto; display:grid; grid-template-columns:1fr 1fr; gap:48px; position:relative; z-index:2; }
+.hero-badge { display:inline-block; background:rgba(240,165,0,.18); color:var(--accent); border:1px solid rgba(240,165,0,.4); border-radius:20px; padding:3px 14px; font-size:11px; font-weight:700; letter-spacing:2px; text-transform:uppercase; margin-bottom:14px; }
+.hero h1 { font-size:44px; font-weight:900; line-height:1.1; letter-spacing:-1px; color:white; margin-bottom:12px; }
+.hero h1 span { color:var(--accent); }
+.hero-sub { font-size:15px; font-weight:500; color:rgba(255,255,255,.7); margin-bottom:28px; line-height:1.6; max-width:440px; }
+.hero-stats { display:flex; gap:28px; }
+.stat-num { font-size:30px; font-weight:800; color:var(--accent); display:block; }
+.stat-label { font-size:11px; color:rgba(255,255,255,.55); font-weight:500; }
+.hero-right { display:flex; flex-direction:column; justify-content:center; gap:14px; }
+.hero-flow { display:flex; align-items:center; gap:8px; flex-wrap:wrap; }
+.flow-chip { background:rgba(255,255,255,.11); border:1px solid rgba(255,255,255,.2); color:white; border-radius:8px; padding:7px 14px; font-size:12.5px; font-weight:600; backdrop-filter:blur(4px); }
+.flow-chip.accent { background:var(--accent); border-color:var(--accent); }
+.flow-arr { color:rgba(255,255,255,.35); font-size:16px; }
+.contact-bar { background:rgba(255,255,255,.08); border:1px solid rgba(255,255,255,.14); border-radius:12px; padding:16px 20px; margin-top:6px; }
+.contact-bar p { font-size:12px; color:rgba(255,255,255,.5); margin-bottom:5px; }
+.contact-bar a { color:var(--accent); font-weight:700; text-decoration:none; font-size:14px; }
+
+/* ─── HINT BAR ─── */
+.hint-bar { background:linear-gradient(90deg,#e8f4fd,#f4f8fc); border-bottom:2px solid #c5dff0; padding:11px 40px; display:flex; align-items:center; justify-content:center; gap:10px; }
+.hint-bar span { font-size:12.5px; font-weight:700; color:var(--blue-mid); }
+.hint-pulse { width:8px; height:8px; border-radius:50%; background:var(--green); animation:pulse 2s infinite; }
+@keyframes pulse { 0%,100%{transform:scale(1);opacity:1;} 50%{transform:scale(1.5);opacity:.5;} }
+
+/* ─── DIAGRAM WRAPPER ─── */
+.diagram-wrap { padding:32px 20px 40px; display:flex; justify-content:center; }
+.slide {
+  width:1080px; background:white; border-radius:20px;
+  box-shadow:0 12px 60px rgba(0,0,0,.18); overflow:hidden;
+}
+
+/* ─── SLIDE HEADER ─── */
+.slide-header { background:linear-gradient(135deg,#0a2a4a 0%,#0b3d6b 55%,#0d6eb5 100%); padding:18px 32px; display:flex; align-items:center; justify-content:space-between; }
+.slide-header h1 { font-size:19px; font-weight:900; color:white; }
+.slide-header h1 span { color:#f0a500; }
+.slide-header p { font-size:11.5px; color:rgba(255,255,255,.5); margin-top:2px; }
+.h-legend { display:flex; gap:16px; flex-shrink:0; }
+.lc { display:flex; align-items:center; gap:5px; font-size:11px; font-weight:600; color:rgba(255,255,255,.65); }
+.lb { width:13px; height:13px; border-radius:3px; flex-shrink:0; }
+.lb.bl { background:#0d6eb5; }
+.lb.or { background:#f0a500; }
+.lb.gr { background:#00c896; border:2px dashed #009e78; }
+
+/* ─── DIAGRAM ─── */
+.dg { padding:22px 28px 18px; background:#f4f8fc; }
+.n { border-radius:8px; padding:9px 12px; font-size:11.5px; font-weight:700; line-height:1.35; text-align:left; position:relative; display:flex; flex-direction:column; }
+.n .num { position:absolute; bottom:4px; right:7px; font-size:22px; font-weight:900; opacity:.13; line-height:1; }
+.n .s { font-size:10px; font-weight:400; margin-top:3px; line-height:1.45; }
+.nb { background:#0d6eb5; color:white; }
+.no { background:#f0a500; color:white; }
+.nw { background:#e6f9f3; color:#004d38; border:2px dashed #00c896; }
+.nw .s { color:#006650; }
+.ncloud { background:linear-gradient(135deg,#e4f2ff,#cce4f7); color:#0a3060; border:2px solid #5aabec; }
+.ncloud .s { color:#1a5080; }
+.newb { display:inline-block; background:#00c896; color:white; font-size:8px; font-weight:800; border-radius:3px; padding:1px 5px; margin-left:5px; letter-spacing:.5px; vertical-align:middle; }
+.arr { color:#8aaac0; font-size:14px; align-self:center; flex-shrink:0; padding:0 3px; }
+.arrd { text-align:center; color:#8aaac0; font-size:16px; line-height:1; margin:3px 0; }
+.clbl { font-size:9.5px; color:#8aaac0; font-weight:600; white-space:nowrap; align-self:center; }
+.row { display:flex; align-items:stretch; gap:10px; margin-bottom:5px; }
+.rowc { display:flex; align-items:stretch; gap:10px; margin-bottom:5px; justify-content:center; }
+.grp { border-radius:10px; padding:10px; border:1.5px solid; position:relative; margin-bottom:5px; }
+.grplbl { position:absolute; top:-9px; left:12px; font-size:9px; font-weight:800; letter-spacing:1px; text-transform:uppercase; padding:1px 8px; border-radius:4px; white-space:nowrap; }
+.gor { border-color:#f0a500; background:rgba(240,165,0,.04); }
+.gor .grplbl { background:#f0a500; color:white; }
+.gbl { border-color:#0d6eb5; background:rgba(13,110,181,.03); }
+.gbl .grplbl { background:#0d6eb5; color:white; }
+.ggr { border-color:#00c896; background:rgba(0,200,150,.04); border-style:dashed; }
+.ggr .grplbl { background:#00c896; color:white; }
+.outer { display:flex; gap:16px; }
+.main { flex:1; min-width:0; }
+.side { width:185px; flex-shrink:0; display:flex; flex-direction:column; gap:8px; }
+.sblk { display:flex; flex-direction:column; gap:5px; }
+.slbl { font-size:9px; font-weight:700; letter-spacing:1.5px; text-transform:uppercase; color:#8aaac0; text-align:center; padding:2px 0; border-bottom:1px dashed #c5d8ea; margin-bottom:2px; }
+.slbl.gr { color:#00a37a; border-color:#00c896; }
+.sep { height:1px; background:linear-gradient(90deg,transparent,#c5d8ea,transparent); margin:4px 0; }
+.packrow { display:flex; gap:0; align-items:stretch; margin-bottom:5px; border:1.5px solid #c5d8ea; border-radius:10px; overflow:hidden; background:white; }
+.packcol { flex:1; padding:10px 12px; display:flex; flex-direction:column; }
+.packcol+.packcol { border-left:1px dashed #c5d8ea; }
+.packsub { font-size:10px; line-height:1.5; }
+.pbadge { display:inline-block; border-radius:4px; padding:2px 8px; font-size:9px; font-weight:700; margin-right:4px; margin-top:3px; }
+.pbb { background:#e8f4fd; color:#0d6eb5; }
+.pbg { background:#e6f9f3; color:#007a5e; }
+.srctags { display:flex; gap:5px; align-items:center; justify-content:center; margin-bottom:4px; font-size:9px; color:#8aaac0; font-weight:600; }
+.stag { background:white; border:1px solid #c5d8ea; border-radius:4px; padding:2px 8px; font-size:9.5px; font-weight:700; color:#5a7490; }
+.stag.w { border-color:#00c896; color:#007a5e; }
+.prod { background:linear-gradient(90deg,#c0392b,#e74c3c); color:white; text-align:center; font-size:16px; font-weight:900; letter-spacing:3px; padding:12px; border-radius:10px; margin-top:6px; }
+.slide-footer { background:#0a2a4a; padding:11px 32px; display:flex; align-items:center; justify-content:space-between; }
+.slide-footer div { font-size:11px; color:rgba(255,255,255,.42); }
+
+/* ─── CLICKABLE NODES ─── */
+.cn {
+  cursor:pointer; transition:transform .18s, box-shadow .18s, filter .18s;
+  position:relative;
+}
+.cn:hover { transform:scale(1.025); box-shadow:0 4px 18px rgba(0,0,0,.22); filter:brightness(1.07); z-index:2; }
+.cn::after {
+  content:'Xem chi tiết ↗';
+  position:absolute; top:4px; right:6px;
+  font-size:8px; font-weight:700; letter-spacing:.3px;
+  background:rgba(255,255,255,.22); color:rgba(255,255,255,.9);
+  border-radius:3px; padding:1px 5px;
+  opacity:0; transition:opacity .18s;
+  pointer-events:none;
+}
+.cn.nw::after,.cn.ncloud::after { color:rgba(0,77,56,.8); background:rgba(0,200,150,.18); }
+.cn:hover::after { opacity:1; }
+.cn-pack {
+  cursor:pointer; transition:background .18s, box-shadow .18s;
+  position:relative;
+}
+.cn-pack:hover { background:rgba(13,110,181,.06)!important; box-shadow:inset 0 0 0 2px rgba(13,110,181,.3); }
+.cn-pack.green-pack:hover { background:rgba(0,200,150,.1)!important; box-shadow:inset 0 0 0 2px rgba(0,200,150,.35); }
+.cn-gcode {
+  cursor:pointer; transition:box-shadow .18s, background .18s;
+}
+.cn-gcode:hover { background:rgba(0,200,150,.1)!important; box-shadow:0 0 0 2px rgba(0,200,150,.45); }
+
+/* ─── PANEL OVERLAY ─── */
+.overlay { position:fixed; inset:0; background:rgba(10,42,74,.45); z-index:200; opacity:0; pointer-events:none; transition:opacity .3s; backdrop-filter:blur(3px); }
+.overlay.show { opacity:1; pointer-events:all; }
+.panel {
+  position:fixed; top:0; right:0; bottom:0; width:480px;
+  background:white; z-index:201;
+  transform:translateX(100%); transition:transform .32s cubic-bezier(.4,0,.2,1);
+  display:flex; flex-direction:column;
+  box-shadow:-12px 0 48px rgba(0,0,0,.22);
+}
+.panel.open { transform:translateX(0); }
+
+/* Panel Header */
+.panel-head {
+  padding:24px 28px 20px;
+  position:relative; flex-shrink:0;
+}
+.panel-category { font-size:10px; font-weight:800; letter-spacing:2px; text-transform:uppercase; margin-bottom:8px; }
+.panel-title { font-size:22px; font-weight:900; color:var(--blue-dark); line-height:1.2; margin-bottom:6px; }
+.panel-tagline { font-size:13px; font-weight:600; color:var(--muted); line-height:1.5; }
+.panel-close {
+  position:absolute; top:20px; right:20px;
+  width:32px; height:32px; border-radius:50%;
+  border:none; background:#f0f4f8; cursor:pointer;
+  font-size:16px; display:flex; align-items:center; justify-content:center;
+  transition:background .15s; color:var(--blue-dark);
+}
+.panel-close:hover { background:#e2eaf2; }
+.panel-divider { height:1px; background:linear-gradient(90deg,var(--blue-mid),transparent); margin:0 28px; }
+
+/* Panel Body */
+.panel-body { flex:1; overflow-y:auto; padding:20px 28px 32px; }
+.panel-body::-webkit-scrollbar { width:4px; }
+.panel-body::-webkit-scrollbar-track { background:transparent; }
+.panel-body::-webkit-scrollbar-thumb { background:#c5d8ea; border-radius:2px; }
+
+.panel-badge { display:inline-block; border-radius:6px; padding:3px 12px; font-size:11px; font-weight:700; margin-bottom:14px; }
+.panel-desc { font-size:14px; color:var(--muted); line-height:1.75; margin-bottom:20px; }
+.panel-note { background:#fffbe8; border:1px solid #f0a500; border-left:3px solid #f0a500; border-radius:8px; padding:10px 14px; font-size:12.5px; color:#7a5200; font-weight:600; margin-bottom:16px; line-height:1.55; }
+.panel-section-title { font-size:11px; font-weight:800; letter-spacing:1.5px; text-transform:uppercase; color:var(--muted); margin-bottom:10px; }
+.features-list { list-style:none; display:flex; flex-direction:column; gap:9px; margin-bottom:20px; }
+.features-list li { font-size:13.5px; color:var(--text); display:flex; align-items:flex-start; gap:9px; line-height:1.55; }
+.feat-dot { width:6px; height:6px; border-radius:50%; flex-shrink:0; margin-top:6px; }
+
+/* Stats row */
+.stats-row { display:flex; gap:12px; margin-bottom:20px; flex-wrap:wrap; }
+.stat-box { flex:1; min-width:90px; background:#f4f8fc; border:1px solid #daeaf7; border-radius:12px; padding:14px 12px; text-align:center; }
+.stat-box-num { font-size:24px; font-weight:900; color:var(--accent); display:block; }
+.stat-box-label { font-size:11px; color:var(--muted); margin-top:3px; }
+
+/* Workflow */
+.workflow-block { border-radius:10px; padding:14px 16px; margin-bottom:10px; }
+.workflow-title { font-size:11px; font-weight:800; color:var(--blue-dark); margin-bottom:10px; }
+.workflow-steps { display:flex; align-items:center; gap:6px; flex-wrap:wrap; }
+.wf-step { border-radius:6px; padding:5px 10px; font-size:11px; font-weight:700; text-align:center; }
+.wf-arr { color:#8aaac0; font-size:12px; }
+
+/* CTA */
+.panel-cta { margin-top:24px; display:flex; flex-direction:column; gap:10px; }
+.cta-btn { display:block; text-align:center; border-radius:10px; padding:13px; font-size:14px; font-weight:800; text-decoration:none; cursor:pointer; border:none; font-family:inherit; transition:transform .15s, box-shadow .15s; }
+.cta-btn.primary { background:linear-gradient(135deg,var(--blue-mid),var(--blue-bright)); color:white; }
+.cta-btn.primary:hover { transform:translateY(-2px); box-shadow:0 6px 20px rgba(13,110,181,.4); }
+.cta-btn.secondary { background:#f4f8fc; border:1.5px solid #c5dff0; color:var(--blue-mid); }
+.cta-btn.secondary:hover { background:#e8f4fd; }
+
+/* ─── EXPORT BUTTONS ─── */
+.export-fab { position:fixed; bottom:18px; right:18px; display:flex; flex-direction:column; gap:6px; z-index:9999; }
+.export-btn { display:flex; align-items:center; gap:5px; padding:5px 10px; border:none; border-radius:6px; font-family:'Be Vietnam Pro',sans-serif; font-size:10px; font-weight:700; cursor:pointer; box-shadow:0 2px 8px rgba(0,0,0,.22); opacity:.82; transition:opacity .15s,transform .15s; white-space:nowrap; }
+.export-btn:hover { opacity:1; transform:translateY(-1px); }
+.export-btn:active { transform:scale(.96); }
+.btn-png { background:#0d6eb5; color:white; }
+.btn-pdf { background:#c0392b; color:white; }
+.export-btn.loading { opacity:.5; pointer-events:none; }
+
+/* ─── PAGE FOOTER ─── */
+.page-footer { background:var(--blue-dark); padding:32px 40px; text-align:center; margin-top:8px; }
+.footer-logo { font-size:24px; font-weight:900; color:white; margin-bottom:8px; }
+.footer-logo span { color:var(--accent); }
+.footer-contacts { display:flex; justify-content:center; gap:36px; flex-wrap:wrap; margin:16px 0; }
+.fc-item { display:flex; flex-direction:column; align-items:center; gap:2px; }
+.fc-label { font-size:10px; color:rgba(255,255,255,.4); text-transform:uppercase; letter-spacing:1px; }
+.fc-val { font-size:14px; font-weight:600; color:var(--accent); }
+.footer-note { font-size:11.5px; color:rgba(255,255,255,.3); margin-top:12px; }
+</style>
+</head>
+<body>
+
+<!-- ─── NAV ─── -->
+<nav class="nav">
+  <div class="nav-logo">wood<span>soft</span>.vn &nbsp;·&nbsp; <span style="font-size:13px;color:rgba(255,255,255,.5);font-weight:600;">BAZIS Optimizers</span></div>
+  <div class="nav-contacts">
+    <a href="tel:0356151084">📞 0356.151.084</a>
+    <a href="#">🌐 woodsoft.vn</a>
+    <a href="mailto:woodsoftvn@gmail.com">✉️ woodsoftvn@gmail.com</a>
+    <a href="#">📖 woodsoft.gitbook.io</a>
+  </div>
+</nav>
+
+<!-- ─── HERO ─── -->
+<section class="hero">
+  <div class="hero-inner">
+    <div>
+      <div class="hero-badge">Giải Pháp Phần Mềm · Sản Xuất Nội Thất Gỗ</div>
+      <h1>BAZIS –<br><span>WOODSOFT</span><br>Toàn Diện</h1>
+      <p class="hero-sub">Hệ sinh thái phần mềm tự động hóa toàn bộ luồng sản xuất nội thất gỗ – từ thiết kế, cắt ván, xuất CNC đến đóng gói & logistics.</p>
+      <div class="hero-stats">
+        <div><span class="stat-num">300+</span><span class="stat-label">Nhà máy triển khai</span></div>
+        <div><span class="stat-num">12</span><span class="stat-label">Module BAZIS</span></div>
+        <div><span class="stat-num">7</span><span class="stat-label">Woodsoft Optimizers</span></div>
+        <div><span class="stat-num">30+</span><span class="stat-label">Hãng CNC hỗ trợ</span></div>
+      </div>
+    </div>
+    <div class="hero-right">
+      <p style="font-size:11px;color:rgba(255,255,255,.4);text-transform:uppercase;letter-spacing:1.5px;font-weight:700;">Luồng sản xuất tích hợp</p>
+      <div class="hero-flow">
+        <span class="flow-chip">🛋️ Bán hàng Showroom nội thất</span>
+        <span class="flow-arr">→</span>
+        <span class="flow-chip">🎨 Thiết kế 3D</span>
+        <span class="flow-arr">→</span>
+        <span class="flow-chip">📐 Bóc tách BOM</span>
+        <span class="flow-arr">→</span>
+        <span class="flow-chip">✂️ Cắt ván tối ưu</span>
+      </div>
+      <div class="hero-flow">
+        <span class="flow-chip accent">⚙️ Xuất file CNC</span>
+        <span class="flow-arr">→</span>
+        <span class="flow-chip">📦 Đóng gói</span>
+        <span class="flow-arr">→</span>
+        <span class="flow-chip">📊 Kho & Phân tích</span>
+        <span class="flow-arr">→</span>
+        <span class="flow-chip">🏭 Sản xuất</span>
+      </div>
+      <div class="contact-bar">
+        <p>Tư vấn & dùng thử miễn phí – không điều kiện</p>
+        <a href="tel:0356151084">📞 0356.151.084</a>&nbsp;&nbsp;·&nbsp;&nbsp;<a href="#">🌐 woodsoft.vn</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ─── HINT BAR ─── -->
+<div class="hint-bar">
+  <div class="hint-pulse"></div>
+  <span>Nhấn vào bất kỳ module nào trong sơ đồ để xem thông tin chi tiết</span>
+  <div class="hint-pulse"></div>
+</div>
+
+<!-- ─── DIAGRAM ─── -->
+<div class="diagram-wrap">
+<div class="slide" id="diagramSlide">
+
+<div class="slide-header">
+  <div>
+    <h1>BAZIS – <span>WOODSOFT OPTIMIZERS</span> · Sơ đồ Hệ thống Tổng thể</h1>
+    <p>Giải pháp tự động hóa toàn diện cho doanh nghiệp sản xuất nội thất gỗ</p>
+  </div>
+  <div class="h-legend">
+    <div class="lc"><div class="lb bl"></div>BAZIS Core</div>
+    <div class="lc"><div class="lb or"></div>BAZIS Support</div>
+    <div class="lc"><div class="lb gr"></div>Woodsoft Optimizers</div>
+  </div>
+</div>
+
+<div class="dg">
+<div class="outer">
+<div class="main">
+
+  <!-- R1: SHOWROOM NỘI THẤT -->
+  <div class="rowc" style="margin-bottom:4px;">
+    <div class="n nb cn" style="width:320px;text-align:center;padding:10px 16px;" onclick="openPanel('showroom-noi-that')">
+      BAZIS – NỘI THẤT &nbsp;/&nbsp; SHOWROOM NỘI THẤT
+      <div class="num">9</div>
+      <div class="s" style="text-align:center;">Sắp xếp không gian · Quản lý đơn hàng · Price list<br>Thiết kế phòng 3D · Báo giá tại chỗ · Chốt đơn +40%</div>
+    </div>
+  </div>
+  <div style="display:flex;justify-content:space-between;padding:0 55px 1px;">
+    <span class="clbl">(F) Phiếu yêu cầu</span>
+    <span class="clbl">(G) Model</span>
+  </div>
+  <div class="arrd" style="padding:0 0 4px;">↓&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;↓</div>
+
+  <!-- R2: 3 INPUTS -->
+  <div class="row" style="margin-bottom:3px;">
+    <div class="n nb cn" style="flex:1.4;" onclick="openPanel('dunghihn')">
+      BAZIS – DỰNG HÌNH
+      <div class="num">1</div>
+      <div class="s">– Dựng hình 3D độ phức tạp bất kỳ<br>– Bản vẽ 2D chi tiết từng panel<br>– Sơ đồ lắp ráp tự động<br>– Bảng thống kê chi tiết &amp; phụ kiện</div>
+    </div>
+    <div class="n nb cn" style="flex:1.2;" onclick="openPanel('cabinet')">
+      BAZIS – CABINET
+      <div class="num">2</div>
+      <div class="s">– Dựng hình bằng thông số lập trình sẵn<br>– Tốc độ dựng nhanh hơn<br>– Kết hợp được với BAZIS Dựng Hình</div>
+    </div>
+    <div class="n nw cn" style="flex:1.1;" onclick="openPanel('sketchup')">
+      🔌 Plugin SketchUp <span class="newb">NEW</span>
+      <div class="s">– Thiết kế trực tiếp trên SketchUp<br>– Xuất file CNC &amp; Nesting 1-click<br>– Hỗ trợ P2P · 5 mặt · 6 mặt</div>
+    </div>
+  </div>
+  <div style="display:flex;gap:10px;margin-bottom:2px;">
+    <div class="clbl" style="flex:1.4;text-align:center;">(A) Model</div>
+    <div class="clbl" style="flex:1.2;text-align:center;">(B) Model</div>
+    <div class="clbl" style="flex:1.1;text-align:center;">(C) Model</div>
+  </div>
+  <div style="display:flex;gap:10px;margin-bottom:5px;">
+    <div class="arrd" style="flex:1.4;">↓</div>
+    <div class="arrd" style="flex:1.2;">↓</div>
+    <div class="arrd" style="flex:1.1;">↓</div>
+  </div>
+
+  <!-- R3: CẮT VÁN -->
+  <div class="grp gor">
+    <div class="grplbl">Cắt ván &amp; Panel Saw – tổng hợp</div>
+    <div class="row" style="margin-top:7px;margin-bottom:0;align-items:stretch;">
+      <div class="n no cn" style="flex:1;" onclick="openPanel('catvan')">
+        BAZIS – CẮT VÁN &amp; CNC PANEL SAW
+        <div class="num">4·6</div>
+        <div class="s">– Sơ đồ cắt tối ưu vật liệu tấm &amp; thanh · Quản lý ván DC, phôi thành phẩm<br>– Điều khiển máy cưa panel tự động · Hỗ trợ 15+ hãng máy · Xuất file định dạng gốc</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="arrd" style="margin-bottom:4px;">(J) ↓ &nbsp;<span style="font-size:9.5px;color:#8aaac0;font-weight:600;">Model sơ đồ cắt ván</span></div>
+
+  <!-- R4: BAZIS CNC -->
+  <div class="row" style="margin-bottom:0;">
+    <div class="n nb cn" style="flex:1;padding:10px 14px;" onclick="openPanel('cnc')">
+      BAZIS – CNC
+      <div class="num">7</div>
+      <div class="s">Tạo ra file chạy dành cho các máy khoan – không cần thêm bất kỳ phần mềm trung gian nào · 30+ hãng máy CNC</div>
+      <div style="display:flex;gap:6px;margin-top:8px;flex-wrap:wrap;">
+        <span style="background:rgba(255,255,255,.18);border:1px solid rgba(255,255,255,.35);color:white;border-radius:5px;padding:3px 9px;font-size:10px;font-weight:700;">(H) File chạy máy</span>
+        <span style="background:#f0a500;border-radius:5px;padding:3px 9px;font-size:10px;font-weight:800;color:white;">📄 Xuất DXF</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- DXF bridge -->
+  <div style="margin:4px 0 2px;height:2px;background:linear-gradient(90deg,transparent,#f0a500 30%,#f0a500 70%,transparent);"></div>
+  <div style="display:flex;align-items:center;justify-content:center;margin-bottom:2px;">
+    <div style="height:12px;width:1.5px;background:#f0a500;opacity:.5;"></div>
+  </div>
+  <div style="display:flex;align-items:center;justify-content:center;margin-bottom:2px;">
+    <div style="background:#fff8e8;border:2px solid #f0a500;border-radius:20px;padding:4px 20px;display:flex;align-items:center;gap:8px;">
+      <span style="font-size:11px;font-weight:800;color:#b07800;">📄 DXF</span>
+      <span style="font-size:9.5px;color:#8a6000;font-weight:600;">Định dạng trung gian · Woodsoft kế thừa toàn bộ từ đây</span>
+    </div>
+  </div>
+  <div style="display:flex;align-items:center;justify-content:center;margin-bottom:3px;">
+    <div style="height:12px;width:1.5px;background:#f0a500;opacity:.5;"></div>
+  </div>
+
+  <!-- NESTSAW GATEWAY -->
+  <div style="margin-bottom:5px;">
+    <div class="n nw cn" style="border-color:#f0a500;background:linear-gradient(135deg,#e6f9f3,#fff8e8);padding:10px 16px;flex-direction:row;align-items:center;gap:12px;" onclick="openPanel('nestsaw')">
+      <div style="font-size:22px;flex-shrink:0;">🔀</div>
+      <div style="flex:1;">
+        <div style="font-size:12px;font-weight:900;color:#004d38;">Nestsaw Gateway
+          <span style="background:#00c896;color:white;font-size:8px;font-weight:800;border-radius:3px;padding:1px 6px;margin-left:6px;letter-spacing:.5px;vertical-align:middle;">Data Analyzer</span>
+          <span class="newb">NEW</span>
+        </div>
+        <div style="font-size:10px;color:#5a6a60;margin-top:3px;font-weight:500;">Phân tích DXF đầu vào → tự động chia luồng sản xuất</div>
+      </div>
+      <div style="display:flex;gap:6px;flex-shrink:0;">
+        <span style="background:#f0a500;color:white;border-radius:5px;padding:3px 10px;font-size:10px;font-weight:800;">Nesting?</span>
+        <span style="color:#8aaac0;font-weight:700;align-self:center;">hoặc</span>
+        <span style="background:#0d6eb5;color:white;border-radius:5px;padding:3px 10px;font-size:10px;font-weight:800;">Panel Saw?</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- TWO BRANCH ARROWS -->
+  <div style="display:flex;margin-bottom:3px;gap:10px;">
+    <div style="flex:1;display:flex;flex-direction:column;align-items:center;">
+      <div style="width:1.5px;height:14px;background:#00c896;"></div>
+      <div style="background:#e6f9f3;border:1.5px solid #00c896;border-radius:12px;padding:2px 14px;font-size:9px;font-weight:800;color:#007a5e;">Luồng ① · Nesting</div>
+      <div style="width:1.5px;height:10px;background:#00c896;"></div>
+    </div>
+    <div style="flex:1;display:flex;flex-direction:column;align-items:center;">
+      <div style="width:1.5px;height:14px;background:#f0a500;"></div>
+      <div style="background:#fff8e8;border:1.5px solid #f0a500;border-radius:12px;padding:2px 14px;font-size:9px;font-weight:800;color:#b07800;">Luồng ② · Panel Saw</div>
+      <div style="width:1.5px;height:10px;background:#f0a500;"></div>
+    </div>
+  </div>
+
+  <!-- TWO BRANCHES -->
+  <div style="display:flex;gap:10px;margin-bottom:5px;align-items:stretch;">
+    <div class="grp ggr" style="flex:1;margin-bottom:0;">
+      <div class="grplbl">① Luồng Nesting</div>
+      <div style="display:flex;flex-direction:column;gap:6px;margin-top:8px;">
+        <div class="n nw cn" style="padding:8px 10px;" onclick="openPanel('nesting')">
+          🔮 Woodsoft Nesting <span class="newb">NEW</span>
+          <div style="font-size:10px;font-weight:800;color:#007a5e;margin-top:4px;margin-bottom:2px;">⚡ Tự động tối ưu đường cắt</div>
+          <div class="s">– Tối ưu xếp ván &amp; đường chạy dao<br>– Hỗ trợ hình rỗng, cong, phức tạp<br>– Xuất G-Code · MPR · DXF</div>
+        </div>
+      </div>
+    </div>
+    <div class="grp gor" style="flex:1;margin-bottom:0;">
+      <div class="grplbl">② Luồng Panel Saw</div>
+      <div style="margin-top:8px;">
+        <div class="n no cn" style="padding:8px 10px;" onclick="openPanel('catvan')">
+          BAZIS – CẮT VÁN &amp; CNC PANEL SAW
+          <div class="num" style="font-size:16px;">4·6</div>
+          <div class="s">– Sơ đồ cắt tối ưu tấm &amp; thanh<br>– Điều khiển 15+ hãng máy Panel Saw<br>– Xuất file định dạng gốc từng hãng</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- RA FILE G-CODE standalone -->
+  <div style="display:flex;align-items:stretch;gap:10px;margin-bottom:5px;">
+    <div style="display:flex;flex-direction:column;align-items:center;justify-content:center;padding:0 6px;">
+      <div style="width:1.5px;height:100%;background:#00c896;opacity:.4;"></div>
+    </div>
+    <div class="cn-gcode" style="flex:1;border:1.5px dashed #00c896;border-radius:10px;padding:8px 12px;background:rgba(0,200,150,.04);display:flex;align-items:center;gap:12px;" onclick="openPanel('gcode')">
+      <div style="flex:1;">
+        <div style="font-size:11px;font-weight:800;color:#004d38;">⚡ Ra file G-Code <span class="newb">NEW</span></div>
+        <div class="s" style="color:#006650;margin-top:3px;">– Thay thế Aspire · Tự tạo post processor<br>– Tự động tối ưu đường dao, chống văn ván</div>
+      </div>
+      <div style="display:flex;flex-direction:column;align-items:flex-end;gap:3px;flex-shrink:0;">
+        <div style="font-size:8.5px;font-weight:700;color:#8aaac0;text-transform:uppercase;letter-spacing:.5px;">Chỉ dành cho</div>
+        <span style="background:#e6f9f3;border:1.5px solid #00c896;color:#007a5e;border-radius:5px;padding:2px 10px;font-size:10px;font-weight:800;">SketchUp</span>
+        <div style="font-size:8px;color:#8aaac0;margin-top:2px;">Xem chi tiết ↗</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- SRCTAGS -->
+  <div class="srctags" style="margin-bottom:4px;">
+    <span style="font-size:9px;color:#5a7490;font-weight:700;">Dữ liệu đóng gói từ:</span>
+    <span class="stag" style="border-color:#0d6eb5;color:#0a3060;font-weight:800;">Bazis</span>
+    <span class="stag w">SketchUp</span>
+    <span class="stag" style="border-color:#8aaac0;color:#3a5a70;font-weight:800;">Cabinet Vision</span>
+  </div>
+
+  <!-- PACKING ROW -->
+  <div class="packrow">
+    <div class="packcol cn-pack" onclick="openPanel('baogoi')">
+      <div style="background:#0d6eb5;border-radius:6px;padding:3px 10px;display:inline-block;margin-bottom:8px;align-self:flex-start;">
+        <span style="font-size:11px;font-weight:800;color:white;">BAZIS – BAO GÓI &nbsp;<span style="opacity:.3;font-size:16px;font-weight:900;">10</span></span>
+      </div>
+      <div class="packsub" style="color:#1a2a3a;">
+        – Đóng gói tự động các tấm kích thước khác nhau<br>
+        – Đặt panel vào hộp nhanh, chính xác, vừa vặn kiện<br>
+        – Đặt gói ốc vít kèm theo trong kiện<br>
+        – Thiết kế bao bì &amp; đặc điểm kỹ thuật tự động
+      </div>
+      <div style="margin-top:8px;">
+        <span class="pbadge" style="background:#e8f4fd;color:#0d6eb5;border:1px solid #0d6eb5;">Bazis</span>
+      </div>
+    </div>
+    <div style="display:flex;flex-direction:column;align-items:center;justify-content:center;padding:0 6px;background:#f4f8fc;border-left:1px dashed #c5d8ea;border-right:1px dashed #c5d8ea;"></div>
+    <div class="packcol green-pack cn-pack" style="background:#edfaf4;" onclick="openPanel('packing')">
+      <div style="background:#00c896;border-radius:6px;padding:3px 10px;display:inline-block;margin-bottom:8px;align-self:flex-start;">
+        <span style="font-size:11px;font-weight:800;color:white;">📦 Packing Manager &nbsp;<span class="newb" style="background:white;color:#007a5e;">NEW</span></span>
+      </div>
+      <div class="packsub" style="color:#004d38;">
+        – Quản lý toàn bộ quy trình đóng gói &amp; logistics<br>
+        – Tối ưu không gian kiện, tiết kiệm số chuyến<br>
+        – Theo dõi trạng thái đóng gói toàn dự án<br>
+        – Quản lý tem nhãn từng kiện &amp; chi tiết trong kiện
+      </div>
+      <div style="margin-top:8px;">
+        <span class="pbadge" style="background:#e8f4fd;color:#0d6eb5;border:1px solid #0d6eb5;">Bazis</span>
+        <span class="pbadge pbg">SketchUp</span>
+        <span class="pbadge" style="background:#f0f0f8;color:#4a4a8a;border:1px solid #9090cc;">Cabinet Vision</span>
+      </div>
+    </div>
+  </div>
+
+  <div style="display:flex;margin-bottom:4px;">
+    <div class="arrd" style="flex:1;">↓</div>
+    <div style="width:22px;"></div>
+    <div class="arrd" style="flex:1;">↓</div>
+  </div>
+  <div class="arrd" style="margin-bottom:4px;">↓</div>
+  <div class="prod">🏭 &nbsp; S Ả N &nbsp; X U Ấ T &nbsp; 🏭</div>
+
+</div><!-- end main -->
+
+<!-- ─── SIDE ─── -->
+<div class="side">
+
+  <div class="sblk">
+    <div class="slbl" style="color:#1a5080;border-color:#5aabec;">☁️ Chia sẻ & Xem online</div>
+    <div class="n ncloud cn" style="width:100%;" onclick="openPanel('cloud')">
+      ☁️ BAZIS Cloud
+      <div class="s">– Nhận bản vẽ &amp; thiết kế từ BAZIS<br>– Upload lên BAZIS Webviewer<br>– Xem online trên mọi thiết bị<br>– Chia sẻ với khách hàng &amp; đối tác</div>
+    </div>
+    <div style="display:flex;align-items:center;gap:0;margin-top:4px;">
+      <div style="flex:1;height:1.5px;background:linear-gradient(90deg,#5aabec,transparent);"></div>
+      <div style="width:8px;height:8px;border-radius:50%;background:#5aabec;flex-shrink:0;"></div>
+    </div>
+    <div style="background:#0d6eb5;border-radius:8px;padding:7px 10px;margin-top:2px;display:flex;align-items:center;gap:8px;">
+      <span style="font-size:16px;">🌐</span>
+      <div>
+        <div style="font-size:10.5px;font-weight:800;color:white;">BAZIS Webviewer</div>
+        <div style="font-size:9px;color:rgba(255,255,255,.65);margin-top:1px;">Xem bản vẽ trực tuyến · Không cần cài phần mềm</div>
+      </div>
+    </div>
+    <div style="margin-top:5px;display:flex;flex-wrap:wrap;gap:4px;">
+      <span style="background:#e8f4fd;border:1px solid #5aabec;color:#0a3060;border-radius:4px;padding:2px 7px;font-size:9px;font-weight:700;">BAZIS Dựng Hình</span>
+      <span style="background:#e8f4fd;border:1px solid #5aabec;color:#0a3060;border-radius:4px;padding:2px 7px;font-size:9px;font-weight:700;">Cabinet</span>
+      <span style="background:#e6f9f3;border:1px solid #00c896;color:#004d38;border-radius:4px;padding:2px 7px;font-size:9px;font-weight:700;">SketchUp</span>
+    </div>
+  </div>
+
+  <div class="sep"></div>
+
+  <div class="sblk">
+    <div class="slbl">Dự toán · có ngay</div>
+    <div class="n no cn" style="width:100%;" onclick="openPanel('duatoan')">
+      BAZIS – DỰ TOÁN
+      <div class="num">3</div>
+      <div class="s">– Tính vật tư, nhân công, chi phí<br>– Hỗ trợ tính số giờ công<br>– Xuất BOM / BOO / ERP</div>
+    </div>
+    <div class="clbl" style="text-align:center;">(I) Phiếu yêu cầu ↓</div>
+  </div>
+
+  <div class="sep"></div>
+
+  <div class="sblk">
+    <div class="slbl">Quản lý kho</div>
+    <div class="n no cn" style="width:100%;" onclick="openPanel('kho')">
+      BAZIS – KHO
+      <div class="num">8</div>
+      <div class="s">– Quản lý xuất · nhập · tồn kho<br>– Biến động hàng hóa<br>– Nhà cung cấp · Mã vạch</div>
+    </div>
+  </div>
+
+  <div class="sep"></div>
+
+  <div class="sblk">
+    <div class="slbl gr">Phân tích toàn luồng</div>
+    <div class="n nw cn" style="width:100%;" onclick="openPanel('dataanalyzer')">
+      📊 Data Analyzer <span class="newb">NEW</span>
+      <div style="display:flex;flex-direction:column;gap:5px;margin-top:8px;">
+        <div style="background:rgba(0,200,150,.15);border:1px solid rgba(0,200,150,.35);border-radius:6px;padding:5px 8px;font-size:10px;font-weight:800;color:#004d38;">
+          🗂️ Layout Selector
+          <div style="font-size:9px;font-weight:400;color:#006650;margin-top:1px;">Báo cáo tiến độ cắt ván · Tối ưu hiệu suất cắt ván</div>
+        </div>
+        <div style="background:rgba(0,200,150,.15);border:1px solid rgba(0,200,150,.35);border-radius:6px;padding:5px 8px;font-size:10px;font-weight:800;color:#004d38;">
+          🔀 Nestsaw Gateway
+          <div style="font-size:9px;font-weight:400;color:#006650;margin-top:1px;">Phân tích DXF → chia luồng Nesting / Panel Saw</div>
+        </div>
+        <div style="background:rgba(0,200,150,.15);border:1px solid rgba(0,200,150,.35);border-radius:6px;padding:5px 8px;font-size:10px;font-weight:800;color:#004d38;">
+          ✂️ ReCut
+          <div style="font-size:9px;font-weight:400;color:#006650;margin-top:1px;">Tìm &amp; chọn nhanh chi tiết sai, hỏng cần bổ sung</div>
+        </div>
+      </div>
+      <div class="s" style="margin-top:6px;">– Dashboard KPI thời gian thực<br>– Phân tích hao hụt vật liệu<br>– Báo cáo hiệu suất sản xuất</div>
+    </div>
+  </div>
+
+  <div class="sep"></div>
+
+  <div class="sblk">
+    <div class="slbl" style="color:#1a5080;border-color:#5aabec;">🏷️ Công cụ phụ trợ</div>
+    <div class="n ncloud cn" style="width:100%;" onclick="openPanel('label')">
+      🏷️ Label Editor <span class="newb" style="background:#0d6eb5;">NEW</span>
+      <div class="s">
+        – Thiết kế tem kéo-thả, không cần lập trình<br>
+        – Template tái sử dụng cho mọi đơn hàng<br>
+        – Xuất tem hàng loạt<br>
+        – Xuất bản vẽ panel &amp; file DXF tổng hợp<br>
+        – Xem sơ đồ cắt ván chi tiết
+      </div>
+    </div>
+  </div>
+
+</div><!-- end side -->
+</div><!-- end outer -->
+</div><!-- end dg -->
+
+<div class="slide-footer">
+  <div>BAZIS – Woodsoft Optimizers · Giải pháp toàn diện cho sản xuất nội thất gỗ</div>
+  <div style="display:flex;gap:20px;">
+    <span>📞 0356.151.084</span>
+    <span>🌐 woodsoft.vn</span>
+    <span>✉️ woodsoftvn@gmail.com</span>
+  </div>
+</div>
+
+</div><!-- end slide -->
+</div><!-- end diagram-wrap -->
+
+<!-- ─── PAGE FOOTER ─── -->
+<footer class="page-footer">
+  <div class="footer-logo">wood<span>soft</span>.vn</div>
+  <p style="font-size:13px;color:rgba(255,255,255,.45);margin-bottom:4px;">Công ty TNHH Woodsoft Việt Nam – Doanh nghiệp Khoa học &amp; Công nghệ</p>
+  <div class="footer-contacts">
+    <div class="fc-item"><span class="fc-label">Hotline</span><span class="fc-val">0356.151.084</span></div>
+    <div class="fc-item"><span class="fc-label">Website</span><span class="fc-val">woodsoft.vn</span></div>
+    <div class="fc-item"><span class="fc-label">Email</span><span class="fc-val">woodsoftvn@gmail.com</span></div>
+    <div class="fc-item"><span class="fc-label">Tài liệu kỹ thuật</span><span class="fc-val">woodsoft.gitbook.io</span></div>
+  </div>
+  <p class="footer-note">Triển khai tại 300+ doanh nghiệp sản xuất nội thất · Hà Nội · Bắc Ninh · TP.HCM · Bình Dương · Đà Nẵng</p>
+</footer>
+
+<!-- ─── DETAIL PANEL ─── -->
+<div class="overlay" id="overlay" onclick="closePanel()"></div>
+<div class="panel" id="detailPanel">
+  <div class="panel-head" id="panelHead">
+    <div class="panel-category" id="panelCategory"></div>
+    <div class="panel-title" id="panelTitle"></div>
+    <div class="panel-tagline" id="panelTagline"></div>
+    <button class="panel-close" onclick="closePanel()">✕</button>
+  </div>
+  <div class="panel-divider"></div>
+  <div class="panel-body" id="panelBody"></div>
+</div>
+
+<!-- ─── EXPORT BUTTONS ─── -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+<div class="export-fab">
+  <button class="export-btn btn-png" id="btnPng" onclick="exportPng()">
+    <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+    PNG
+  </button>
+  <button class="export-btn btn-pdf" id="btnPdf" onclick="exportPdf()">
+    <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+    PDF
+  </button>
+</div>
+
+<script>
+// ─── MODULE DATA ───
+const MODULES = {
+  'showroom-noi-that': {
+    name: 'BAZIS – Nội Thất / Showroom Nội Thất',
+    icon: '🛋️',
+    category: 'BAZIS Core',
+    categoryColor: '#0d6eb5',
+    badge: 'Module 09 + 12',
+    badgeBg: '#e8f4fd', badgeColor: '#0d6eb5',
+    tagline: 'Bán hàng Showroom · Sắp xếp không gian · Quản lý đơn hàng',
+    desc: 'Giải pháp bán hàng nội thất chuyên nghiệp cho showroom kết hợp quản lý đơn hàng đa chi nhánh. Thiết kế phòng 3D ngay trước mặt khách, tự động báo giá tại chỗ, kết nối thẳng về xưởng sản xuất.',
+    features: [
+      'Dựng không gian với bố trí cửa sổ, cửa ra vào, vách ngăn thực tế',
+      'Interior 3D – Thiết kế phòng theo kích thước thực, xem từ mọi góc độ',
+      'Pricelist Manager – Catalogue điện tử đa hãng, cập nhật giá tự động',
+      'Orders Management – Quản lý đơn từ ký hợp đồng đến giao hàng',
+      'Tự động báo giá từ thiết kế – khách nhận giá ngay tại chỗ',
+      'Xuất bản vẽ kỹ thuật chuẩn xưởng trực tiếp từ thiết kế showroom',
+      'Quản lý nhiều showroom & báo cáo doanh số từng nhân viên'
+    ],
+    featColor: '#0d6eb5',
+    stats: [
+      { num: '+40%', label: 'Tỉ lệ chốt đơn' },
+      { num: '-60%', label: 'Thời gian tư vấn' },
+      { num: '4.000+', label: 'Doanh nghiệp toàn cầu' },
+      { num: '3-in-1', label: 'Module tích hợp' }
+    ]
+  },
+  dunghihn: {
+    name: 'BAZIS – Dựng Hình',
+    icon: '🧱',
+    category: 'BAZIS Core',
+    categoryColor: '#0d6eb5',
+    badge: 'Module 01 · Core',
+    badgeBg: '#e8f4fd', badgeColor: '#0d6eb5',
+    tagline: 'Trái tim của hệ thống BAZIS – dựng 3D không giới hạn độ phức tạp',
+    desc: 'Module nền tảng của BAZIS – dựng hình 3D bất kỳ sản phẩm nội thất với độ phức tạp không giới hạn. Tự động xuất toàn bộ bản vẽ 2D, sơ đồ lắp ráp và bảng thống kê chi tiết & phụ kiện.',
+    features: [
+      'Dựng hình 3D bất kỳ sản phẩm nội thất, độ phức tạp không giới hạn',
+      'Tự động xuất bản vẽ 2D chi tiết từng cấu kiện',
+      'Tạo sơ đồ lắp ráp tự động với thuật toán tối ưu',
+      'Bảng thống kê chi tiết & phụ kiện tự động',
+      'Lắp đặt phụ kiện liên kết thông minh',
+      'Tương thích AutoCAD, 3DS MAX, SketchUp, Excel'
+    ],
+    featColor: '#0d6eb5'
+  },
+  cabinet: {
+    name: 'BAZIS – Cabinet',
+    icon: '🗄️',
+    category: 'BAZIS Core',
+    categoryColor: '#0d6eb5',
+    badge: 'Module 02',
+    badgeBg: '#e8f4fd', badgeColor: '#0d6eb5',
+    tagline: 'Dựng hình nhanh theo thông số lập trình sẵn',
+    desc: 'Dựng hình nhanh và chính xác các sản phẩm dạng cabinet thông qua hệ thống thông số lập trình sẵn. Tốc độ cao hơn nhiều lần so với dựng thủ công, kết hợp linh hoạt với BAZIS Dựng Hình.',
+    features: [
+      'Nhập thông số theo lập trình chuẩn sẵn – không cần am hiểu kỹ thuật',
+      'Tốc độ dựng 1 sản phẩm nhanh hơn nhiều lần',
+      'Kiểm tra sai sót tự động: lỗi quá khổ ván, ngăn kéo kẹt...',
+      'Kết hợp & tái sử dụng với BAZIS Dựng Hình',
+      'Lưu thông số kỹ thuật & cấu trúc để tái dùng cho các đơn sau'
+    ],
+    featColor: '#0d6eb5'
+  },
+  sketchup: {
+    name: 'Plugin Woodsoft cho SketchUp',
+    icon: '🔌',
+    category: 'Woodsoft Optimizers',
+    categoryColor: '#00c896',
+    badge: 'Optimizer 02 · NEW',
+    badgeBg: '#e6f9f3', badgeColor: '#007a5e',
+    tagline: 'ALL-IN-ONE-CLICK – Thiết kế trên SketchUp, xuất CNC ngay tức thì',
+    desc: 'Cầu nối hoàn hảo giữa thiết kế 3D trên SketchUp và xưởng CNC. Toàn bộ dữ liệu sản xuất được tạo ra ngay trong SketchUp, không cần phần mềm trung gian nào khác.',
+    features: [
+      'Trực tiếp trên môi trường SketchUp, không cần phần mềm ngoài',
+      'Xuất file CNC tối ưu cho máy P2P, 5 mặt, 6 mặt, Nesting',
+      'Hỗ trợ xoi xoáy trôn ốc từ trong ra ngoài (tính năng mới nhất)',
+      'Xuất tem nhãn, báo cáo thống kê & hồ sơ sản xuất',
+      'Cấu hình post processor đơn giản, trực quan',
+      'Kết nối trực tiếp với Woodsoft Nesting & Ra file G-Code'
+    ],
+    featColor: '#00c896'
+  },
+  duatoan: {
+    name: 'BAZIS – Dự Toán',
+    icon: '💰',
+    category: 'BAZIS Support',
+    categoryColor: '#f0a500',
+    badge: 'Module 03',
+    badgeBg: '#fff8e8', badgeColor: '#b07800',
+    tagline: 'Tính giá thành tự động – BOM / BOO / ERP có ngay sau thiết kế',
+    desc: 'Tự động tính toán giá thành sản phẩm nội thất với độ chính xác cao, dựa trên dữ liệu vật tư & nhân công thực tế của doanh nghiệp. Xuất BOM/BOO ngay sau khi hoàn thành thiết kế.',
+    features: [
+      'Tính chi phí vật tư, nhân công và các chi phí khác',
+      'Xuất BOM (Bill of Materials) & BOO (Bill of Operation)',
+      'Import dữ liệu vật tư qua định dạng .dbf / .xml',
+      'Hỗ trợ tính số giờ công tối thiểu thực hiện đơn hàng',
+      'Tích hợp với hệ thống ERP của doanh nghiệp'
+    ],
+    featColor: '#f0a500'
+  },
+  catvan: {
+    name: 'BAZIS – Cắt Ván & CNC Panel Saw',
+    icon: '✂️',
+    category: 'BAZIS Core',
+    categoryColor: '#0d6eb5',
+    badge: 'Module 04 · 06 · 07',
+    badgeBg: '#e8f4fd', badgeColor: '#0d6eb5',
+    tagline: 'Tối ưu sơ đồ cắt · Mô phỏng CNC · Điều khiển 15+ hãng Panel Saw',
+    desc: 'Bộ 3 module liên kết: Cắt Ván (sơ đồ tối ưu vật liệu tấm & thanh), Simulator (mô phỏng CNC trước khi chạy máy thật), và CNC Panel Saw (điều khiển 15+ hãng máy cưa panel tự động).',
+    features: [
+      'Tối ưu sơ đồ cắt cho cưa bàn trượt, Panel Saw, CNC Nesting',
+      'Lọc tấm panel theo biến dạng, kích thước, chiều vân',
+      'Quản lý ván DC, phôi thành phẩm',
+      'Simulator: Mô phỏng toàn bộ chu trình cắt ván trực quan',
+      'Kiểm tra trước khi chạy máy thật – giảm lỗi sản xuất',
+      'Hỗ trợ: Altendorf, Felder, Selco, Holzma, SCM, KDT, Nanxing...',
+      'Xuất file theo định dạng gốc của từng hãng máy',
+      'In & thiết kế tem đi kèm linh hoạt theo yêu cầu'
+    ],
+    featColor: '#0d6eb5'
+  },
+  cnc: {
+    name: 'BAZIS – CNC',
+    icon: '⚙️',
+    category: 'BAZIS Core',
+    categoryColor: '#0d6eb5',
+    badge: 'Module 08',
+    badgeBg: '#e8f4fd', badgeColor: '#0d6eb5',
+    tagline: 'File CNC cho 30+ hãng máy khoan & phay – không cần phần mềm trung gian',
+    desc: 'Phần mềm chuyển đổi bản vẽ 3D từ BAZIS sang định dạng phù hợp của 30+ hãng máy CNC khoan & phay. Tạo trực tiếp file chạy máy, không cần thêm bất kỳ phần mềm trung gian nào.',
+    features: [
+      'Tự động nhận thông tin 3D & bản vẽ 2D CAD từ BAZIS Dựng Hình/Cabinet',
+      'Tạo tổ hợp lệnh: khoan trên mặt ván, xoi mặt, xoi ngang...',
+      'Tạo 2 bản vẽ từ mặt chính và mặt còn lại',
+      'Hỗ trợ 30+ hãng máy CNC: Biesse, Homag, IMA, SCM, HOLZ-HER...',
+      'Kiểm tra tính khả thi các công đoạn trên máy',
+      'Xuất DXF làm định dạng trung gian cho Woodsoft Optimizers'
+    ],
+    featColor: '#0d6eb5',
+    note: '📄 File DXF xuất từ BAZIS CNC là đầu vào chuẩn cho toàn bộ hệ thống Woodsoft Optimizers.'
+  },
+  nestsaw: {
+    name: 'Nestsaw Gateway',
+    icon: '🔀',
+    category: 'Woodsoft Data Analyzer',
+    categoryColor: '#00c896',
+    badge: 'Data Analyzer · NEW',
+    badgeBg: '#e6f9f3', badgeColor: '#007a5e',
+    tagline: 'Chia line · Điều phối đa máy · Tối đa công suất',
+    desc: 'Module thông minh phân tích file DXF và tự động chia luồng sản xuất giữa CNC Nesting và Panel Saw. Cân bằng tải đa máy, tối đa hóa công suất toàn dây chuyền mà không cần thao tác thủ công.',
+    features: [
+      'Chia line tự động – tự nhận biết chi tiết nào Nesting, chi tiết nào Panel Saw',
+      'Điều phối đa máy – phân bổ công việc đều, không máy nào bị quá tải hay bỏ không',
+      'Tối đa công suất – toàn bộ dây chuyền vận hành đồng bộ, tăng sản lượng',
+      'Phân luồng & cân bằng tải: CNC Nesting → Dán cạnh → Máy 6 mặt / Panelsaw → Dán cạnh → Máy 6 mặt',
+      'Phân tích định tuyến – biểu đồ cân bằng cắt theo từng vật liệu',
+      'Dự trù thời gian sản xuất và ước tính hoàn thành theo ca',
+      'Báo cáo tải trọng máy: Panel Saw, Nesting CNC, 6 Mặt, Khoan ngang',
+      'Lịch sản xuất tự động với timeline trực quan'
+    ],
+    featColor: '#00c896',
+    images: [
+      { src: 'nestsaw_1.png', caption: 'Nestsaw Gateway – Phân luồng & cân bằng tải sản xuất' },
+      { src: 'nestsaw_2.png', caption: 'So sánh không có / có NestSaw Gateway – Điều phối sản xuất thông minh' },
+      { src: 'nestsaw_3.png', caption: 'Phân tích định tuyến – biểu đồ cân bằng cắt theo vật liệu' },
+      { src: 'nestsaw_4.png', caption: 'Dashboard tổng quan sản xuất – tải trọng máy & dự trù thời gian' }
+    ]
+  },
+  nesting: {
+    name: 'Woodsoft Nesting',
+    icon: '🔮',
+    category: 'Woodsoft Optimizers',
+    categoryColor: '#00c896',
+    badge: 'Optimizer 01 · Core',
+    badgeBg: '#e6f9f3', badgeColor: '#007a5e',
+    tagline: 'Giải pháp Nesting thông minh – Thuật toán xếp ván độc quyền',
+    desc: 'Nesting các chi tiết với đầu vào là file DXF hoặc Excel. Thuật toán xếp ván độc quyền – xếp lồng chi tiết kể cả vào vùng rỗng, chống văng ván tự động, kết nối mọi nguồn dữ liệu.',
+    features: [
+      'Xếp lồng chi tiết kể cả vào vùng rỗng – giảm tối đa phần ván dư',
+      'Tận dụng lại ván dư để ra file CNC đúng kích thước và số lượng',
+      'Bí quyết điều khiển đường cắt – hạn chế văng chi tiết nhỏ kể cả máy không có hút chân không',
+      'Xếp ván tối ưu kể cả chi tiết cong, rỗng giữa, khấu khoét',
+      'Cắt nhiều khổ ván cùng lúc – tận dụng tối đa DC',
+      'Tem nhãn đồng bộ – file tem sinh cùng lúc với file CNC',
+      'Kết nối trực tiếp hệ thống dán tem tự động',
+      'Nhận đầu vào từ BAZIS, SketchUp, AutoCAD, DXF, Polyboard',
+      'Xuất G-Code cho mọi hệ tọa độ máy CNC – không cần Aspire'
+    ],
+    featColor: '#00c896',
+    images: [
+      { src: 'nesting_1.png', caption: 'Thuật toán xếp ván độc quyền – tối ưu tỷ lệ sử dụng ván' },
+      { src: 'nesting_2.png', caption: 'Woodsoft Nesting – Tính năng toàn diện: xếp ván, chống văng, kết nối đa nguồn' }
+    ]
+  },
+  gcode: {
+    name: 'Ra file G-Code',
+    icon: '⚡',
+    category: 'Woodsoft Optimizers',
+    categoryColor: '#00c896',
+    badge: 'Optimizer 06 · SketchUp Only',
+    badgeBg: '#e6f9f3', badgeColor: '#007a5e',
+    tagline: 'Thay thế Aspire hoàn toàn · Chỉ dành cho người dùng SketchUp',
+    desc: 'Module độc lập dành riêng cho người dùng SketchUp & plugin ABF/AFU-HT. Thay thế hoàn toàn phần mềm CAM như Aspire – xuất file CNC tối ưu ngay lập tức, tiết kiệm đáng kể chi phí bản quyền.',
+    features: [
+      'Xuất G-Code từ file DXF của SketchUp, BAZIS, AutoCAD',
+      'Người dùng tự tạo postprocessor cho từng loại máy',
+      'Tự động tối ưu hóa đường dao, chống văng ván',
+      'Thay thế Aspire – tiết kiệm chi phí bản quyền phần mềm',
+      'Hỗ trợ máy không có hút chân không (bắn ghim)'
+    ],
+    featColor: '#00c896',
+    note: '⚠️ Module độc lập – chỉ liên quan khi phần mềm thiết kế là SketchUp. Không yêu cầu BAZIS Dựng Hình.'
+  },
+  dataanalyzer: {
+    name: 'Woodsoft Data Analyzer',
+    icon: '📊',
+    category: 'Woodsoft Optimizers',
+    categoryColor: '#00c896',
+    badge: 'Optimizer 03 · NEW',
+    badgeBg: '#e6f9f3', badgeColor: '#007a5e',
+    tagline: 'Dashboard KPI · Phân tích hao hụt · Báo cáo hiệu suất sản xuất',
+    desc: 'Bộ 3 công cụ phân tích dữ liệu sản xuất chuyên sâu: Layout Selector theo dõi tiến độ cắt ván, Nestsaw Gateway chia luồng tự động, ReCut tìm chi tiết sai cần bổ sung. Cung cấp KPI giúp lãnh đạo tối ưu hóa xưởng.',
+    features: [
+      '🗂️ Layout Selector – Báo cáo tiến độ cắt ván, tối ưu hiệu suất',
+      '🔀 Nestsaw Gateway – Phân tích DXF, chia luồng Nesting / Panel Saw',
+      '✂️ ReCut – Tìm & chọn nhanh chi tiết sai, hỏng cần bổ sung',
+      'Dashboard KPI thời gian thực toàn luồng sản xuất',
+      'Phân tích tỷ lệ hao hụt vật liệu theo từng đơn hàng',
+      'Báo cáo hiệu suất sản xuất, xuất Excel & PDF cho ban lãnh đạo',
+      'Tích hợp dữ liệu từ toàn bộ hệ thống BAZIS'
+    ],
+    featColor: '#00c896'
+  },
+  baogoi: {
+    name: 'BAZIS – Bao Gói',
+    icon: '📦',
+    category: 'BAZIS Core',
+    categoryColor: '#0d6eb5',
+    badge: 'Module 11',
+    badgeBg: '#e8f4fd', badgeColor: '#0d6eb5',
+    tagline: 'Đóng gói tự động · Tối ưu kiện hàng · In tem nhãn',
+    desc: 'Đóng gói tự động các tấm có kích thước khác nhau – đặt panel vào hộp một cách nhanh chóng, chính xác, vừa vặn với kiện hàng. Thiết kế bao bì tự động và in tem nhãn hàng loạt.',
+    features: [
+      'Đặt các tấm panel vào hộp tự động, tối ưu không gian kiện',
+      'Đặt gói, hộp ốc vít vào trong kiện kèm theo',
+      'Thiết kế tự động các loại bao bì cho mỗi kiện',
+      'Tự động thiết kế đặc điểm kỹ thuật cho từng kiện',
+      'In tem, nhãn tự động cho từng kiện hàng',
+      'Nhận dữ liệu từ BAZIS Dựng Hình, Cabinet, CNC'
+    ],
+    featColor: '#0d6eb5'
+  },
+  packing: {
+    name: 'Woodsoft Packing Manager',
+    icon: '📦',
+    category: 'Woodsoft Optimizers',
+    categoryColor: '#00c896',
+    badge: 'Optimizer 04 · NEW',
+    badgeBg: '#e6f9f3', badgeColor: '#007a5e',
+    tagline: 'Giải pháp toàn diện cho khâu đóng gói – 5 bước, không cần đào tạo phức tạp',
+    desc: 'Quản lý toàn diện quy trình đóng gói & logistics trong sản xuất nội thất. Từ phân loại hàng ngàn tấm gỗ, đóng kiện, quét QR đến xuất kho và lắp đặt tại công trình – tất cả tự động, chính xác.',
+    features: [
+      'Nhập liệu thông minh – đọc trực tiếp DXF.zip & CNC.zip từ BAZIS / Woodsoft Optimizers',
+      'Quét mã QR / Barcode – súng quét điểm danh từng tấm vào kiện, kiểm soát thời gian thực',
+      'Chặn sai sót tự động – cảnh báo ngay khi quét thừa hoặc nhầm sản phẩm vào sai kiện',
+      'In tem tự động – quét QR lệnh → in tem kiện ngay, không cần chuột, không cần PC',
+      'Báo cáo & kiểm đếm – phiếu tổng kết tự động, lọc theo mode, vật liệu, trạng thái',
+      'Lưu & khôi phục tự động – khôi phục chính xác nếu bị gián đoạn',
+      'Biết kiện nào chứa chi tiết nào – chỉ mở kiện cần thiết khi lắp đặt',
+      'Phát hiện nhanh chi tiết bị thiếu hoặc hỏng trong quá trình vận chuyển'
+    ],
+    featColor: '#00c896',
+    images: [
+      { src: 'packing_1.png', caption: 'Packing Manager – 3 bước quy trình: phân loại, đóng kiện, xuất kho' },
+      { src: 'packing_2.png', caption: 'Giải pháp toàn diện: 6 tính năng cốt lõi của Woodsoft Packing Manager' },
+      { src: 'packing_3.png', caption: 'Quy trình vận hành 5 bước – không cần đào tạo phức tạp' },
+      { src: 'packing_4.png', caption: 'So sánh trước & sau khi sử dụng Woodsoft Packing Manager' },
+      { src: 'packing_5.png', caption: 'Hiển thị trực quan – Tem nhãn khoa học & giao diện quản lý kiện hàng' }
+    ]
+  },
+  cloud: {
+    name: 'BAZIS Cloud & Webviewer',
+    icon: '☁️',
+    category: 'BAZIS Core',
+    categoryColor: '#0d6eb5',
+    badge: 'Cloud Service',
+    badgeBg: '#e8f4fd', badgeColor: '#1a5080',
+    tagline: 'Chia sẻ bản vẽ online · Xem trên mọi thiết bị · Không cần cài phần mềm',
+    desc: 'Upload bản vẽ & thiết kế từ BAZIS lên Webviewer và chia sẻ link với khách hàng & đối tác. Khách hàng có thể xem bản vẽ 3D trực tuyến trên mọi thiết bị mà không cần cài đặt bất kỳ phần mềm nào.',
+    features: [
+      'Nhận bản vẽ & thiết kế từ BAZIS Dựng Hình, Cabinet, SketchUp',
+      'Upload lên BAZIS Webviewer chỉ 1 click từ trong phần mềm',
+      'Xem online trên mọi thiết bị – PC, tablet, điện thoại',
+      'Chia sẻ link với khách hàng & đối tác dễ dàng',
+      'Không cần cài phần mềm BAZIS để xem bản vẽ'
+    ],
+    featColor: '#0d6eb5'
+  },
+  kho: {
+    name: 'BAZIS – Kho',
+    icon: '🏪',
+    category: 'BAZIS Support',
+    categoryColor: '#f0a500',
+    badge: 'Module 09',
+    badgeBg: '#fff8e8', badgeColor: '#b07800',
+    tagline: 'Quản lý kho xuất – nhập – tồn · Mã vạch · Nhà cung cấp',
+    desc: 'Quản lý kho xuất – nhập – tồn – biến động hàng hóa, nhà cung cấp và tối ưu hóa chuỗi cung ứng. Hỗ trợ đa người dùng, quét mã vạch và tích hợp chặt chẽ với quy trình sản xuất.',
+    features: [
+      'Cấu trúc kho phân cấp với khả năng lưu chuyển nội bộ',
+      'Chứng từ hình thành tự động từ phiếu yêu cầu sản xuất',
+      'Thiết lập tem sản phẩm với hỗ trợ phần mềm BAZIS TEM',
+      'Quét mã vạch, quản lý nhà cung cấp, kho thành phẩm',
+      'Nhiều người dùng làm việc đồng thời trên cùng 1 CSDL'
+    ],
+    featColor: '#f0a500'
+  },
+  label: {
+    name: 'Woodsoft Label Editor',
+    icon: '🏷️',
+    category: 'Woodsoft Optimizers',
+    categoryColor: '#00c896',
+    badge: 'Optimizer 07 · NEW',
+    badgeBg: '#e6f9f3', badgeColor: '#007a5e',
+    tagline: 'Design labels, your way – Kéo thả, không cần lập trình',
+    desc: 'Bộ công cụ tự thiết kế tem nhãn linh hoạt theo đúng nhu cầu của từng xưởng. Kỹ thuật viên chủ động kéo thả các trường dữ liệu lên canvas, không cần lập trình, không cần can thiệp kỹ thuật.',
+    features: [
+      'Thiết kế kéo-thả – tự do đặt QR Code, Barcode, kích thước, mã máy, ghi chú',
+      'Template tái sử dụng – lưu mẫu một lần, áp dụng cho mọi đơn hàng sau',
+      'Xuất tem hàng loạt – import dữ liệu → chọn template → xuất toàn bộ',
+      'Xuất bản vẽ chi tiết panel & file DXF tổng hợp',
+      'Xem sơ đồ cắt ván chi tiết ngay trong phần mềm',
+      'Xuất PDF chuẩn máy in tem công nghiệp'
+    ],
+    featColor: '#00c896',
+    workflow: {
+      w1: { title: '① Lần đầu – Tạo template', bg: '#f4f8fc', steps: ['Import dữ liệu', 'Thiết kế mẫu tem', 'Xuất PDF', 'Lưu template'], sc: '#0d6eb5' },
+      w2: { title: '② Lần sau – Dùng lại template', bg: '#e6f9f3', steps: ['Import dữ liệu', 'Chọn template', 'Xuất hàng loạt'], sc: '#00c896' }
+    },
+    note: '🔴 Giải quyết: Nhu cầu hiển thị khác nhau mỗi xưởng · Không phụ thuộc lập trình viên · Mẫu tái sử dụng vô hạn',
+    image: 'Woodsoft_Label_Editor_1.png',
+    imageCaption: 'Woodsoft Label Editor – Giao diện thiết kế tem nhãn kéo-thả'
+  }
+};
+
+// ─── PANEL LOGIC ───
+function openPanel(id) {
+  const m = MODULES[id];
+  if (!m) return;
+
+  // Header
+  const catEl = document.getElementById('panelCategory');
+  catEl.textContent = m.category;
+  catEl.style.color = m.categoryColor;
+
+  document.getElementById('panelTitle').textContent = m.icon + ' ' + m.name;
+  document.getElementById('panelTagline').textContent = m.tagline;
+
+  // Body
+  let html = '';
+
+  // Badge
+  html += `<span class="panel-badge" style="background:${m.badgeBg};color:${m.badgeColor};">${m.badge}</span>`;
+
+  // Description
+  html += `<p class="panel-desc">${m.desc}</p>`;
+
+  // Note
+  if (m.note) {
+    html += `<div class="panel-note">${m.note}</div>`;
+  }
+
+  // Stats
+  if (m.stats) {
+    html += `<div class="stats-row">`;
+    m.stats.forEach(s => {
+      html += `<div class="stat-box"><span class="stat-box-num">${s.num}</span><div class="stat-box-label">${s.label}</div></div>`;
+    });
+    html += `</div>`;
+  }
+
+  // Features
+  html += `<div class="panel-section-title">Tính năng chính</div>`;
+  html += `<ul class="features-list">`;
+  m.features.forEach(f => {
+    html += `<li><div class="feat-dot" style="background:${m.featColor};"></div><span>${f}</span></li>`;
+  });
+  html += `</ul>`;
+
+  // Workflow
+  if (m.workflow) {
+    html += `<div class="panel-section-title" style="margin-top:4px;">Quy trình sử dụng</div>`;
+    Object.values(m.workflow).forEach(w => {
+      html += `<div class="workflow-block" style="background:${w.bg};border:1px solid ${w.sc}30;margin-bottom:10px;">
+        <div class="workflow-title" style="color:${w.sc};">${w.title}</div>
+        <div class="workflow-steps">`;
+      w.steps.forEach((s, i) => {
+        html += `<div class="wf-step" style="background:${w.sc};color:white;">${s}</div>`;
+        if (i < w.steps.length - 1) html += `<span class="wf-arr">→</span>`;
+      });
+      html += `</div></div>`;
+    });
+  }
+
+  // Single image (legacy)
+  if (m.image) {
+    html += `<div class="panel-section-title" style="margin-top:8px;">Hình ảnh minh họa</div>
+    <div style="border-radius:12px;overflow:hidden;border:1px solid #daeaf7;margin-bottom:20px;box-shadow:0 4px 18px rgba(13,110,181,.1);">
+      <img src="${m.image}" alt="${m.imageCaption||''}" style="width:100%;display:block;">
+      ${m.imageCaption ? `<div style="padding:8px 12px;font-size:11.5px;color:#5a7490;font-weight:600;background:#f4f8fc;border-top:1px solid #daeaf7;">${m.imageCaption}</div>` : ''}
+    </div>`;
+  }
+  // Multiple images
+  if (m.images && m.images.length) {
+    html += `<div class="panel-section-title" style="margin-top:8px;">Hình ảnh minh họa</div>`;
+    m.images.forEach(img => {
+      html += `<div style="border-radius:12px;overflow:hidden;border:1px solid #daeaf7;margin-bottom:14px;box-shadow:0 4px 16px rgba(13,110,181,.08);">
+        <img src="${img.src}" alt="${img.caption||''}" style="width:100%;display:block;">
+        ${img.caption ? `<div style="padding:7px 12px;font-size:11px;color:#5a7490;font-weight:600;background:#f4f8fc;border-top:1px solid #daeaf7;">${img.caption}</div>` : ''}
+      </div>`;
+    });
+  }
+
+  // CTA
+  html += `<div class="panel-cta">
+    <a class="cta-btn primary" href="tel:0356151084">📞 Liên hệ tư vấn ngay – 0356.151.084</a>
+    <a class="cta-btn secondary" href="#">🌐 Xem thêm tại woodsoft.vn</a>
+  </div>`;
+
+  document.getElementById('panelBody').innerHTML = html;
+
+  // Show
+  document.getElementById('overlay').classList.add('show');
+  document.getElementById('detailPanel').classList.add('open');
+  document.body.style.overflow = 'hidden';
+}
+
+function closePanel() {
+  document.getElementById('overlay').classList.remove('show');
+  document.getElementById('detailPanel').classList.remove('open');
+  document.body.style.overflow = '';
+}
+
+document.addEventListener('keydown', e => { if (e.key === 'Escape') closePanel(); });
+
+// ─── EXPORT ───
+async function captureSlide() {
+  return await html2canvas(document.getElementById('diagramSlide'), { scale:2, useCORS:true, backgroundColor:'#ffffff', logging:false });
+}
+async function exportPng() {
+  const btn = document.getElementById('btnPng');
+  btn.classList.add('loading'); btn.textContent = '...';
+  try {
+    const c = await captureSlide();
+    const a = document.createElement('a');
+    a.download = 'woodsoft-system-diagram.png';
+    a.href = c.toDataURL('image/png');
+    a.click();
+  } finally {
+    btn.classList.remove('loading');
+    btn.innerHTML = '<svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg> PNG';
+  }
+}
+async function exportPdf() {
+  const btn = document.getElementById('btnPdf');
+  btn.classList.add('loading'); btn.textContent = '...';
+  try {
+    const c = await captureSlide();
+    const img = c.toDataURL('image/png');
+    const { jsPDF } = window.jspdf;
+    const pw = c.width/2, ph = c.height/2;
+    const pdf = new jsPDF({ orientation: pw>ph?'landscape':'portrait', unit:'px', format:[pw,ph] });
+    pdf.addImage(img,'PNG',0,0,pw,ph);
+    pdf.save('woodsoft-system-diagram.pdf');
+  } finally {
+    btn.classList.remove('loading');
+    btn.innerHTML = '<svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg> PDF';
+  }
+}
+</script>
+</body>
+</html>
