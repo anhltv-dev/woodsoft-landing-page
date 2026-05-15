@@ -193,6 +193,24 @@ body { font-family:'Be Vietnam Pro',sans-serif; background:var(--bg); color:var(
 .panel-body::-webkit-scrollbar-thumb { background:#c5d8ea; border-radius:3px; }
 .panel-body::-webkit-scrollbar-thumb:hover { background:#8aaac0; }
 
+/* Hero image – infographic chính, hiển thị ngay đầu panel body */
+.panel-hero-image {
+  margin:0 0 22px;
+  border-radius:14px; overflow:hidden;
+  border:1px solid #daeaf7;
+  box-shadow:0 8px 28px rgba(13,110,181,.18);
+  background:white;
+}
+.panel-hero-image img { width:100%; display:block; }
+.panel-hero-caption {
+  padding:12px 16px;
+  font-size:13px; color:var(--blue-dark);
+  font-weight:700;
+  background:linear-gradient(90deg,#f4f8fc,#fafdff);
+  border-top:1px solid #daeaf7;
+  line-height:1.45;
+}
+
 .panel-badge { display:inline-block; border-radius:6px; padding:4px 14px; font-size:11.5px; font-weight:700; margin-bottom:16px; }
 .panel-desc { font-size:15px; color:var(--text); line-height:1.75; margin-bottom:22px; }
 .panel-note { background:#fffbe8; border:1px solid #f0a500; border-left:4px solid #f0a500; border-radius:10px; padding:12px 16px; font-size:13.5px; color:#7a5200; font-weight:600; margin-bottom:18px; line-height:1.6; }
@@ -1860,6 +1878,14 @@ function openPanel(id) {
   // Body
   let html = '';
 
+  // HERO IMAGE (infographic chính – hiển thị đầu tiên)
+  if (m.image) {
+    html += `<div class="panel-hero-image">
+      <img src="${m.image}" alt="${m.imageCaption||''}">
+      ${m.imageCaption ? `<div class="panel-hero-caption">${m.imageCaption}</div>` : ''}
+    </div>`;
+  }
+
   // Badge
   html += `<span class="panel-badge" style="background:${m.badgeBg};color:${m.badgeColor};">${m.badge}</span>`;
 
@@ -1929,14 +1955,6 @@ function openPanel(id) {
     });
   }
 
-  // Single image (legacy)
-  if (m.image) {
-    html += `<div class="panel-section-title" style="margin-top:8px;">Hình ảnh minh họa</div>
-    <div style="border-radius:12px;overflow:hidden;border:1px solid #daeaf7;margin-bottom:20px;box-shadow:0 4px 18px rgba(13,110,181,.1);">
-      <img src="${m.image}" alt="${m.imageCaption||''}" style="width:100%;display:block;">
-      ${m.imageCaption ? `<div style="padding:8px 12px;font-size:11.5px;color:#5a7490;font-weight:600;background:#f4f8fc;border-top:1px solid #daeaf7;">${m.imageCaption}</div>` : ''}
-    </div>`;
-  }
   // Multiple images
   if (m.images && m.images.length) {
     html += `<div class="panel-section-title" style="margin-top:8px;">Hình ảnh minh họa</div>`;
